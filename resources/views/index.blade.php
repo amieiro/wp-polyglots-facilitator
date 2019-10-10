@@ -43,7 +43,28 @@
                 <h3 style="font-size: 18px; text-align: center;color: #fff; padding-top: 16px">Download pretranslated .po files</h3>
             </div>
             <div class="card-body">
-                <form method="POST">
+                <form method="POST" action="/">
+                    @csrf
+
+                    {{-- Translation type --}}
+                    <div class="form-row">
+                        <div class="name">Translation type</div>
+                        <div class="value">
+                            <div class="input-group">
+                                <div class="rs-select2 js-select-simple select--no-search">
+                                    <select id="translationType" class="form-control" name="translationType">
+                                        <option disabled="disabled" selected="selected">Choose option</option>
+                                        <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value="plugin">Plugin</option>
+                                            <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value="theme">Theme</option>
+                                    </select>
+                                    <div class="select-dropdown"></div>
+                                    @if ($errors->has('translationType'))
+                                        <label class="label--desc invalid-feedback">{{ $errors->first('translationType') }}</label>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     {{-- Slug --}}
                     <div class="form-row">
@@ -63,7 +84,7 @@
                         <div class="name">{{ __('Download the readme') }}</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-5" type="checkbox" id="readme" name="readme" value="{{ old('readme') }}">
+                                <input class="input--style-5" type="checkbox" id="readme" name="readme" {{ (! empty(old('readme')) ? 'checked' : '') }}>
                             </div>
                         </div>
                     </div>
@@ -128,7 +149,7 @@
                         <div class="name">Translate using internal database</div>
                         <div class="value">
                             <div class="input-group">
-                                <input class="input--style-5" type="checkbox" id="translateStrings" name="translateStrings">
+                                <input class="input--style-5" type="checkbox" id="translateStrings" name="translateStrings" {{ (! empty(old('translateStrings')) ? 'checked' : '') }}>
                             </div>
                         </div>
                     </div>

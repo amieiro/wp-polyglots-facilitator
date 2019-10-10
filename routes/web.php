@@ -12,4 +12,4 @@
 */
 
 Route::get('/', 'HomeController@index');
-
+Route::post('/', 'TranslationController@downloadAndReplace');
