@@ -178,7 +178,7 @@
                             <br>
                              - {!! __('<strong>Translation type</strong>. You can select to translate a plugin or a theme.') !!}<br>
                              - {!! __('<strong>Slug</strong>. The slug of the plugin or theme. You can find it in the URL. For example, "wp-super-cache" is the slug for the plugin "WP Super Cache" and its URL is <a href="https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/" target="_blank">https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/</a>') !!}<br>
-                            - {!! __('<strong>Download the readme</strong>. If you select this option, the app don\'t download the code translation, only the readme translation (only available for the plugins).') !!}<br>
+                            - {!! __('<strong>Download the readme</strong>. If you select this option, the app doesn\'t download the code translation, only the readme translation (only available for the plugins).') !!}<br>
                             - {!! __('<strong>Source language</strong>. The language from which the translation strings will be copied.') !!}<br>
                             - {!! __('<strong>Destination language</strong>. The language into which the translation strings will be copied from the source language.') !!}<br>
                             - {!! __('<strong>Number of strings</strong>. The number of translation strings that will contain the output file.') !!}<br>
