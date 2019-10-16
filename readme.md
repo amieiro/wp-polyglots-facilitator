@@ -110,10 +110,7 @@ $ php artisan migrate:fresh --seed
 This tool uses:
 - [Laravel 6.1](https://laravel.com) as web framework. [MIT license](https://opensource.org/licenses/MIT).
 - [MySQL 5.7](https://www.mysql.com/) as database. [GPL v2 license](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html).
-- [Colorlib Reg Form v5](https://colorlib.com/wp/free-bootstrap-registration-forms/) as template. 
-[CC BY 3.0 license](https://creativecommons.org/licenses/by/3.0/).  
-You can [download here](https://colorlib.com/thank-you-for-downloading/?dlm-dp-dl=1956) 
-and [see it in action here](https://colorlib.com/etc/regform/colorlib-regform-5/).  
+- [Bootstrap 4.3.1](https://getbootstrap.com) as base template. [MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).
 
 ## License
 
