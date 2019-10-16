@@ -50,7 +50,10 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input type="checkbox" id="readme" name="readme">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox"  id="readme" name="readme" class="custom-control-input custom-checkbox">
+                                        <label class="custom-control-label" for="readme"> </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -117,7 +120,10 @@
                                     <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for Spanish (Spain) to Galician. Limited to 50 strings due the CPU consumption."></i>
                                 </label>
                                 <div class="col-md-6">
-                                    <input type="checkbox" id="translateStrings" name="translateStrings">
+                                    <div class="custom-control custom-switch">
+                                        <input type="checkbox"  id="translateStrings" name="translateStrings" class="custom-control-input custom-checkbox">
+                                        <label class="custom-control-label" for="readme"> </label>
+                                    </div>
                                 </div>
                             </div>
 
@@ -129,38 +135,6 @@
                                     </button>
                                 </div>
                             </div>
-
-                            {{-- Information text --}}
-{{--                            <div class="form-group row">
-                                <label for="numberOfStrings" class="col-md-12 col-form-label text-md-right alert-info mt-4" style="text-align: left !important;">
-                                    {!! __('This tool tries to make it easier for translators to <strong>reuse translations from one local variation of a language to another</strong> and also <strong>between languages</strong>.') !!}
-                                    <br><br>
-                                    {!! __('It is designed (and was initially developed for this purpose) for those cases of <strong>bilingual people</strong> who want to take advantage of the fact that one of the two languages they master has a much higher percentage of translations.') !!}
-                                    {!!  __('For example, in the case of Galicia (Spain), its inhabitants are bilingual in Galician and Spanish, so that the Galician translation community can take advantage of the translation of the Spanish team (from Spain), using files pre-translated into Spanish of the translation chains that are missing in Galician, so the translation effort is much less, since in this case the translation is from Spanish to Galician and not from English to Galician. Similar cases are those of Catalan, Basque, Aragonese, Asturian, Balearic,...') !!}
-
-                                    <br><br>
-                                    {!! __('It is also designed for those cases in which there is a <strong>variation in the language</strong>, such as the case of Spanish, which has variations such as Spanish from Spain, Peru, Venezuela,... in which the translations that have a lower percentage can use the work of the group that has done more work, as is the case of Spanish from Spain.') !!}
-                                    {!! __('This is also valid for other languages such as English, which has variations in Canada, UK, Australia,...') !!}
-                                    <br>
-                                    <br>
-                                    <h3>{!! __('Inputs') !!}</h3>
-                                    <br>
-                                    - {!! __('<strong>Translation type</strong>. You can select to translate a plugin or a theme.') !!}<br>
-                                    - {!! __('<strong>Slug</strong>. The slug of the plugin or theme. You can find it in the URL. For example, "wp-super-cache" is the slug for the plugin "WP Super Cache" and its URL is <a href="https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/" target="_blank">https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/</a>') !!}<br>
-                                    - {!! __('<strong>Download the readme</strong>. If you select this option, the app doesn\'t download the code translation, only the readme translation (only available for the plugins).') !!}<br>
-                                    - {!! __('<strong>Source language</strong>. The language from which the translation strings will be copied.') !!}<br>
-                                    - {!! __('<strong>Destination language</strong>. The language into which the translation strings will be copied from the source language.') !!}<br>
-                                    - {!! __('<strong>Number of strings</strong>. The number of translation strings that will contain the output file.') !!}<br>
-                                    - {!! __('<strong>Translate using internal database</strong>. This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for Spanish (Spain) to Galician. Limited to 50 strings due the CPU consumption.') !!}<br>
-                                    <br>
-                                    <h3>{!! __('Output') !!}</h3>
-                                    <br>
-                                    {!! __('The resulting file is a "po" file of the missing strings to be translated into the target language with the pre-translated strings in the source language.') !!}<br><br>
-                                    1) {!! __('This process may take a few seconds. Be patient.') !!}<br>
-                                    2) {!! __('Do not click "Download .po" more than once.') !!}<br>
-                                </label>
-                            </div>--}}
-
                         </form>
                     </div>
                 </div>

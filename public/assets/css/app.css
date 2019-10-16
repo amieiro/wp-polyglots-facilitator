@@ -10688,3 +10688,7 @@ a.text-dark:focus {
   margin-left: 0.5rem;
 }
 
+.custom-control.custom-switch {
+  margin-top: 0.5rem;
+}
+
