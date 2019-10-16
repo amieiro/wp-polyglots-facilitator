@@ -3,6 +3,8 @@
 
 namespace App\Http\Helpers;
 
+// todo: put in an .env variable
+ini_set('max_execution_time', 180);
 
 use App\Helpers\TranslationBlock;
 use App\Models\WordTranslation;
