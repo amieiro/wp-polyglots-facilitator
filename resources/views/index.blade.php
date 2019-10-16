@@ -45,7 +45,7 @@
 
                             {{-- Readme --}}
                             <div class="form-group row">
-                                <label for="readme" class="col-md-4 col-form-label text-md-right">{!! __('Download the readme') !!}
+                                <label class="col-md-4 col-form-label text-md-right">{!! __('Download the readme') !!}
                                     <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="If you select this option, the app don't download the code translation, only the readme translation (only available for the plugins)."></i>
                                 </label>
 
@@ -116,13 +116,13 @@
 
                             {{-- Translate strings using the internal database --}}
                             <div class="form-group row">
-                                <label for="translateStrings" class="col-md-4 col-form-label text-md-right">{!! __('Translate strings using the internal database') !!}
+                                <label class="col-md-4 col-form-label text-md-right">{!! __('Translate strings using the internal database') !!}
                                     <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for Spanish (Spain) to Galician. Limited to 50 strings due the CPU consumption."></i>
                                 </label>
                                 <div class="col-md-6">
                                     <div class="custom-control custom-switch">
                                         <input type="checkbox"  id="translateStrings" name="translateStrings" class="custom-control-input custom-checkbox">
-                                        <label class="custom-control-label" for="readme"> </label>
+                                        <label class="custom-control-label" for="translateStrings"> </label>
                                     </div>
                                 </div>
                             </div>
