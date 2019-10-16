@@ -10683,3 +10683,8 @@ a.text-dark:focus {
   display: inline;
 }
 
+.fa.fa-info-circle {
+  color: #bbb;
+  margin-left: 0.5rem;
+}
+
