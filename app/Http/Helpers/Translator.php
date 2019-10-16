@@ -58,7 +58,7 @@ class Translator
         try {
             $this->translationType = $translationType;
             $this->slug = $slug;
-            $this->readme = $readme;
+            $this->readme = ($readme === 'on') ? '-readme' : '';
             $this->originalLanguage = $originalLanguage;
             $this->destinationLanguage = $destinationLanguage;
             $this->numberOfStrings = $numberOfStrings;
