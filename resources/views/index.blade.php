@@ -11,12 +11,12 @@
                             {{-- Translation type --}}
                             <div class="form-group row">
                                 <label for="translationType" class="col-md-4 col-form-label text-md-right">{!! __('Translation type') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="You can select to translate a plugin or a theme."></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('You can select to translate a plugin or a theme.') }}"></i>
                                 </label>
                                 <div class="col-md-6">
                                     <select id="translationType" class="form-control rounded-0" name="translationType" required>
-                                        <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value="plugin">Plugin</option>
-                                        <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value="theme">Theme</option>
+                                        <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value="plugin">{{ __('Plugin') }}</option>
+                                        <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value="theme"> {{ __('Theme') }}</option>
                                     </select>
 
                                     @if ($errors->has('translationType'))
@@ -29,8 +29,9 @@
 
                             {{-- Slug --}}
                             <div class="form-group row">
-                                <label for="slug" class="col-md-4 col-form-label text-md-right">{!! __('Slug') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="The slug of the plugin or theme. <br>You can find it in the URL. <br>For example, &quot;wp-super-cache&quot; is the slug for the plugin &quot;WP Super Cache&quot; <br>Its URL is https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/"></i>
+                                <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('Slug') }}
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top"
+                                       title="{{ __('The slug of the plugin or theme. <br>You can find it in the URL. <br>For example, &quot;wp-super-cache&quot; is the slug for the plugin &quot;WP Super Cache&quot; <br>Its URL is https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/') }}"></i>
                                 </label>
                                 <div class="col-md-6">
                                     <input id="slug" type="text" class="form-control rounded-0" name="slug" value="{{ old('slug') }}" required autofocus>
@@ -46,12 +47,12 @@
                             {{-- Readme --}}
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">{!! __('Download the readme') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="If you select this option, the app don't download the code translation, only the readme translation (only available for the plugins)."></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('If you select this option, the app don\'t download the code translation, only the readme translation (only available for the plugins).') }}"></i>
                                 </label>
 
                                 <div class="col-md-6">
                                     <div class="custom-control custom-switch">
-                                        <input type="checkbox"  id="readme" name="readme" class="custom-control-input custom-checkbox">
+                                        <input type="checkbox" id="readme" name="readme" class="custom-control-input custom-checkbox">
                                         <label class="custom-control-label" for="readme"> </label>
                                     </div>
                                 </div>
@@ -60,7 +61,7 @@
                             {{-- Original language --}}
                             <div class="form-group row">
                                 <label for="originalLanguage" class="col-md-4 col-form-label text-md-right">{!! __('Source language') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="The language from which the translation strings will be copied."></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('The language from which the translation strings will be copied.') }}"></i>
                                 </label>
 
                                 <div class="col-md-6">
@@ -81,7 +82,7 @@
                             {{-- Destination language --}}
                             <div class="form-group row">
                                 <label for="destinationLanguage" class="col-md-4 col-form-label text-md-right">{!! __('Destination language') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="The language into which the translation strings will be copied from the source language."></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('The language into which the translation strings will be copied from the source language.') }}"></i>
                                 </label>
 
                                 <div class="col-md-6">
@@ -101,7 +102,7 @@
                             {{-- Number of strings to translate --}}
                             <div class="form-group row">
                                 <label for="numberOfStrings" class="col-md-4 col-form-label text-md-right">{!! __('Number of strings to translate') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="The number of translation strings that will contain the output file."></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('The number of translation strings that will contain the output file.') }}"></i>
                                 </label>
 
                                 <div class="col-md-6">
@@ -117,11 +118,11 @@
                             {{-- Translate strings using the internal database --}}
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label text-md-right">{!! __('Translate strings using the internal database') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for Spanish (Spain) to Galician. Limited to 50 strings due the CPU consumption."></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for "Spanish (Spain)" to "Galician". Limited to 50 strings due the CPU consumption.') }}"></i>
                                 </label>
                                 <div class="col-md-6">
                                     <div class="custom-control custom-switch">
-                                        <input type="checkbox"  id="translateStrings" name="translateStrings" class="custom-control-input custom-checkbox">
+                                        <input type="checkbox" id="translateStrings" name="translateStrings" class="custom-control-input custom-checkbox">
                                         <label class="custom-control-label" for="translateStrings"> </label>
                                     </div>
                                 </div>
@@ -158,12 +159,13 @@
                                 <h3>{!! __('Inputs') !!}</h3>
                                 <br>
                                 - {!! __('<strong>Translation type</strong>. You can select to translate a plugin or a theme.') !!}<br>
-                                - {!! __('<strong>Slug</strong>. The slug of the plugin or theme. You can find it in the URL. For example, "wp-super-cache" is the slug for the plugin "WP Super Cache" and its URL is <a href="https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/" target="_blank">https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/</a>') !!}<br>
+                                - {!! __('<strong>Slug</strong>. The slug of the plugin or theme. You can find it in the URL. For example, "wp-super-cache" is the slug for the plugin "WP Super Cache" and its URL is <a href="https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/" target="_blank">https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/</a>') !!}
+                                <br>
                                 - {!! __('<strong>Download the readme</strong>. If you select this option, the app doesn\'t download the code translation, only the readme translation (only available for the plugins).') !!}<br>
                                 - {!! __('<strong>Source language</strong>. The language from which the translation strings will be copied.') !!}<br>
                                 - {!! __('<strong>Destination language</strong>. The language into which the translation strings will be copied from the source language.') !!}<br>
                                 - {!! __('<strong>Number of strings</strong>. The number of translation strings that will contain the output file.') !!}<br>
-                                - {!! __('<strong>Translate using internal database</strong>. This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for Spanish (Spain) to Galician. Limited to 50 strings due the CPU consumption.') !!}<br>
+                                - {!! __('<strong>Translate using internal database</strong>. This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for "Spanish (Spain)" to "Galician". Limited to 50 strings due the CPU consumption.') !!}<br>
                                 <br>
                                 <h3>{!! __('Output') !!}</h3>
                                 <br>
@@ -179,9 +181,12 @@
     </div>
 @endsection
 @section('post-footer')
-<script type="application/javascript">
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-</script>
+    <script type="application/javascript">
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        });
+        $("#language").change(function () {
+            window.location = './locale/' + $("#language").val();
+        });
+    </script>
 @endsection

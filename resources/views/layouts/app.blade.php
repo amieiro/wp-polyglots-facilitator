@@ -65,15 +65,21 @@
                 <ul class="navbar-nav ml-auto">
                     <!-- Authentication Links -->
                     <li class="nav-item">
-                        <a class="nav-link" href="https://www.jesusamieiro.com/acercade/" target="_blank">About</a>
+                        <a class="nav-link" href="https://www.jesusamieiro.com/acercade/" target="_blank">{{ __('About') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/amieiro/wptranslator/blob/master/LICENSE" target="_blank">License</a>
+                        <a class="nav-link" href="https://github.com/amieiro/wptranslator/blob/master/LICENSE" target="_blank"> {{ __('License') }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/amieiro/wptranslator" target="_blank">GitHub</a>
                     </li>
-                    {{-- todo: add the language selector --}}
+                    <li class="nav-item">
+                        <select id="language" class="form-control rounded-0" name="language">
+                            @foreach(array_values(config('locale.languages')) as $language)
+                                <option value="{{$language[0]}}" @if ($language[0]===App::getLocale()) selected @endif>{{ $language[3]}}</option>
+                            @endforeach
+                        </select>
+                    </li>
                 </ul>
             </div>
         </div>
