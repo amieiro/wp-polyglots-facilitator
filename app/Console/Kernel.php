@@ -13,7 +13,9 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\importWordTranslationCommand::class,
+        Commands\scrapLanguagesCommand::class,
+        Commands\scrapLanguageStatisticsCommand::class,
     ];
 
     /**
@@ -24,8 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+         $schedule->command('wp-translation:scrap-language-statistics')
+             ->dailyAt('03:00');
     }
 
     /**

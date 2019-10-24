@@ -14,7 +14,7 @@ class importWordTranslationCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'wordpress-translation:import-word-translation';
+    protected $signature = 'wp-translation:import-word-translation';
 
     /**
      * The console command description.
