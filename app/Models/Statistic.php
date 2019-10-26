@@ -12,5 +12,9 @@ class Statistic extends Model
         'counter',
         'percent',
         'number_contributors',
+        'translated',
+        'untranslated',
+        'fuzzy',
+        'waiting',
     ];
 }

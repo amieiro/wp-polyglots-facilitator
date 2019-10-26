@@ -63,16 +63,43 @@ class scrapLanguageStatisticsCommand extends Command
                 $url = 'https://translate.wordpress.org/locale/' . $language->locale_code . '/default/stats/' . $type . '/';
                 $client = new Client();
                 $crawler = $client->request('GET', $url);
-                $pluginsCompleted = $crawler->filter('[data-column-title="Untranslated"]')->filter('[data-sort-value="0"]')->count();
+                $elementsCompleted = $crawler->filter('[data-column-title="Untranslated"]')->filter('[data-sort-value="0"]')->count();
+                $translated = 0;
+                $crawler->filter('[data-column-title="Translated"]')->each(function ($node) use (&$translated) {
+                    $value = str_replace(',', '', $node->text());
+                    $translated += $value;
+                });
+                $untranslated = 0;
+                $crawler->filter('[data-column-title="Untranslated"]')->each(function ($node) use (&$untranslated) {
+                    $value = str_replace(',', '', $node->text());
+                    $untranslated += $value;
+                });
+                $fuzzy = 0;
+                $crawler->filter('[data-column-title="Fuzzy"]')->each(function ($node) use (&$fuzzy) {
+                    $value = str_replace(',', '', $node->text());
+                    $fuzzy += $value;
+                });
+                $waiting = 0;
+                $crawler->filter('[data-column-title="Waiting"]')->each(function ($node) use (&$waiting) {
+                    $value = str_replace(',', '', $node->text());
+                    $waiting += $value;
+                });
                 $statistic = Statistic::create([
                     'type' => $type,
                     'locale_code' => $language->locale_code,
-                    'counter' => $pluginsCompleted,
+                    'counter' => $elementsCompleted,
+                    'translated' => $translated,
+                    'untranslated' => $untranslated,
+                    'fuzzy' => $fuzzy,
+                    'waiting' => $waiting,
                 ]);
-                $outputString = $statistic->type . ' - ' . $statistic->locale_code . ' - ' . $statistic->counter;
+                $outputString = 'Type: ' . $statistic->type . ' - ' . 'Locale code: ' . $statistic->locale_code . ' - ';
+                $outputString .= 'Counter: ' . $statistic->counter . ' - ' . 'Translated: ' . $statistic->translated . ' - ';
+                $outputString .= 'Untranslated: ' . $statistic->untranslated . ' - ' . 'Fuzzy: ' . $statistic->fuzzy . ' - ';
+                $outputString .= 'Waiting: ' . $statistic->waiting . ' - Total: ' . ($translated + $untranslated + $fuzzy + $waiting);
                 $this->info($outputString);
                 Log::info($outputString);
-                sleep(random_int(10, 20));
+                $this->sleep();
             }
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
@@ -107,8 +134,23 @@ class scrapLanguageStatisticsCommand extends Command
                 $outputString = $statistic->type . ' - ' . $statistic->locale_code . ' - ' . $statistic->percent . ' - ' . $statistic->number_contributors;
                 $this->info($outputString);
                 Log::info($outputString);
-                sleep(random_int(10, 20));
+                $this->sleep();
             });
+        } catch (\Exception $exception) {
+            $this->error($exception->getMessage());
+            Log::error($exception->getMessage());
+        }
+    }
+
+    /**
+     * Sleep the code execution a random time
+     *
+     */
+
+    protected function sleep(): void
+    {
+        try {
+            sleep(random_int(15, 25));
         } catch (\Exception $exception) {
             $this->error($exception->getMessage());
             Log::error($exception->getMessage());
