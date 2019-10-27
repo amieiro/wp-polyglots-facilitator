@@ -11,6 +11,7 @@
 |
 */
 
+Route::get('/locale/change', 'HomeController@localeChange');
 Route::get('/locale/{id}', 'HomeController@language');
 Route::get('/', 'HomeController@index');
 Route::post('/', 'TranslationController@downloadAndReplace');

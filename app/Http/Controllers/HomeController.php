@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Locale;
+use App\Models\WordTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Session;
@@ -38,6 +39,23 @@ class HomeController extends Controller
             return redirect('/');
         } catch (\Exception $exception) {
             return redirect('/');
+        }
+    }
+
+    public function localeChange(Request $request)
+    {
+        if($request->ajax()) {
+            try {
+                $sourceLocaleCode = Locale::where('locale_code', $request['originalLanguage'])->first()->wordpress_locale;
+                $destinationLocaleCode = Locale::where('locale_code', $request['destinationLanguage'])->first()->wordpress_locale;
+                $occurrences = WordTranslation::where('source_locale_code', $sourceLocaleCode)
+                    ->where('destination_locale_code', $destinationLocaleCode)->count();
+                return response()->json($occurrences);
+            } catch (\Exception $exception) {
+                return response()->json(0);
+            }
+        } else {
+            return response()->json(0);
         }
     }
 }

@@ -116,7 +116,7 @@
                             </div>
 
                             {{-- Translate strings using the internal database --}}
-                            <div class="form-group row">
+                            <div class="form-group row" id="row-translateStrings">
                                 <label class="col-md-4 col-form-label text-md-right">{!! __('Translate strings using the internal database') !!}
                                     <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('This option uses an internal database to automatically translates well know words or small strings between to languages. It only works for "Spanish (Spain)" to "Galician". Limited to 50 strings due the CPU consumption.') }}"></i>
                                 </label>
@@ -182,11 +182,42 @@
 @endsection
 @section('post-footer')
     <script type="application/javascript">
+        // Enable the tooltip
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
+        // Change the frontend language
         $("#language").change(function () {
             window.location = './locale/' + $("#language").val();
         });
+        // Hide the translateStrings element
+        $(document).ready(function () {
+            $("#row-translateStrings").hide();
+            showOrHidetranslateStrings();
+        });
+        // Show or hide the translateStrings element
+        $('#originalLanguage, #destinationLanguage').change(function () {
+            showOrHidetranslateStrings();
+        });
+
+        function showOrHidetranslateStrings() {
+            var originalLanguage = $("select[name=originalLanguage]").val();
+            var destinationLanguage = $("select[name=destinationLanguage]").val();
+            $.ajax({
+                type: 'GET',
+                url: '/locale/change',
+                data: {originalLanguage: originalLanguage, destinationLanguage: destinationLanguage},
+                success: function (resp) {
+                    if (resp > 0) {
+                        $("#row-translateStrings").show();
+                    } else {
+                        $("#row-translateStrings").hide();
+                    }
+                },
+                error: function (e) {
+                    console.log('Error: ' + e);
+                }
+            });
+        }
     </script>
 @endsection
