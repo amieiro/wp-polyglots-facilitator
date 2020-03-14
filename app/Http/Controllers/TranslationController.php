@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class TranslationController extends Controller
 {
     protected $translationType;
+    protected $translationFrom;
     protected $slug;
     protected $readme = null;
     protected $originalLanguage;
@@ -21,6 +22,7 @@ class TranslationController extends Controller
         // Request validation
         $validator = Validator::make($request->all(), [
             'translationType' => 'required',
+            'translationFrom' => 'required',
             'slug' => 'required',
             'originalLanguage' => 'required',
             'destinationLanguage' => 'required',
@@ -32,13 +34,14 @@ class TranslationController extends Controller
 
         try {
             $this->translationType = $request->translationType;
+            $this->translationFrom = $request->translationFrom;
             $this->slug = $request->slug;
             $this->readme = $request->readme;
             $this->originalLanguage = $request->originalLanguage;
             $this->destinationLanguage = $request->destinationLanguage;
             $this->numberOfStrings = $request->numberOfStrings;
             $this->translateStrings = $request->translateStrings;
-            $translator = new Translator($this->translationType, $this->slug, $this->readme, $this->originalLanguage, $this->destinationLanguage, $this->numberOfStrings, $this->translateStrings);
+            $translator = new Translator($this->translationType, $this->translationFrom, $this->slug, $this->readme, $this->originalLanguage, $this->destinationLanguage, $this->numberOfStrings, $this->translateStrings);
             $translator->translate();
             if ($translator->error === null) {
                 return response()->download($translator->fullOutcomePath, $translator->fileNameToReturn);

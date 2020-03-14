@@ -27,6 +27,25 @@
                                 </div>
                             </div>
 
+                            {{-- Translation from --}}
+                            <div class="form-group row">
+                                <label for="translationFrom" class="col-md-4 col-form-label text-md-right">{!! __('Translation from') !!}
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('You can select to translate from "Development (trunk)" or from "Stable (latest release)".') }}"></i>
+                                </label>
+                                <div class="col-md-6">
+                                    <select id="translationFrom" class="form-control rounded-0" name="translationFrom" required>
+                                        <option {{ old('translationFrom') === 'dev' ? 'selected' : '' }} value="dev">{{ __('Development') }}</option>
+                                        <option {{ old('translationFrom') === 'stable' ? 'selected' : '' }} value="stable"> {{ __('Stable') }}</option>
+                                    </select>
+
+                                    @if ($errors->has('translationFrom'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('translationFrom') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             {{-- Slug --}}
                             <div class="form-group row">
                                 <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('Slug') }}

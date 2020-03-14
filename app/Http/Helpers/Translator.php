@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\File;
 class Translator
 {
     protected $translationType;
+    protected $translationFrom;
     protected $slug;
     protected $readme = null;
     protected $originalLanguage;
@@ -43,6 +44,7 @@ class Translator
      * Create a new instance
      *
      * @param string $translationType
+     * @param string $translationFrom
      * @param string $slug
      * @param boolean $readme
      * @param string $originalLanguage
@@ -50,13 +52,12 @@ class Translator
      * @param integer $numberOfStrings
      * @param boolean $translateStrings
      *
-     * @return void
-     * @throws Exception
      */
-    public function __construct($translationType, $slug, $readme, $originalLanguage, $destinationLanguage, $numberOfStrings, $translateStrings)
+    public function __construct($translationType, $translationFrom, $slug, $readme, $originalLanguage, $destinationLanguage, $numberOfStrings, $translateStrings)
     {
         try {
             $this->translationType = $translationType;
+            $this->translationFrom = $translationFrom;
             $this->slug = $slug;
             $this->readme = ($readme === 'on') ? '-readme' : '';
             $this->originalLanguage = $originalLanguage;
@@ -114,10 +115,10 @@ class Translator
             switch ($this->translationType) {
                 case 'plugin':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp-plugins/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->slug . '/dev' . $this->readme . '/' . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'wp-plugins-' . $this->slug . '-dev-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/dev' . $this->readme . '/' . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'wp-plugins-' . $this->slug . '-dev-' . $this->destinationLanguage . '.po';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->slug . '/' . $this->translationFrom . $this->readme . '/' . $this->originalLanguage . '/default/export-translations/';
+                    $this->sourceLanguageFile = 'wp-plugins-' . $this->slug . '-' . $this->translationFrom . '-' . $this->originalLanguage . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/' . $this->translationFrom . $this->readme . '/' . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'wp-plugins-' . $this->slug . '-' . $this->translationFrom . '-' . $this->destinationLanguage . '.po';
                     break;
                 case 'theme':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp-themes/';
