@@ -30,7 +30,7 @@
                             {{-- Translation from --}}
                             <div class="form-group row">
                                 <label for="translationFrom" class="col-md-4 col-form-label text-md-right">{!! __('Translation from') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('You can select to translate from "Development (trunk)" or from "Stable (latest release)".') }}"></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{!!  __('You can select to translate from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}"></i>
                                 </label>
                                 <div class="col-md-6">
                                     <select id="translationFrom" class="form-control rounded-0" name="translationFrom" required>
