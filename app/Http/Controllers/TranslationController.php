@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\Translator;
+use App\Http\Requests\DownloadAndReplaceTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -17,13 +18,13 @@ class TranslationController extends Controller
     protected $numberOfStrings;
     protected $translateStrings = null;
 
-    protected function downloadAndReplace(Request $request)
+    protected function downloadAndReplace(DownloadAndReplaceTranslation $request)
     {
         // Request validation
         $validator = Validator::make($request->all(), [
             'translationType' => 'required',
             'translationFrom' => 'required',
-            'slug' => 'required',
+//            'slug' => 'required',
             'originalLanguage' => 'required',
             'destinationLanguage' => 'required',
             'numberOfStrings' => 'required|integer|min:1|max:1000000'

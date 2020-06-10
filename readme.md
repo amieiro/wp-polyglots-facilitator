@@ -26,7 +26,8 @@ the target language with the pre-translated strings in the source language.
 
 ### Inputs
 
-- **Translation type**. You can select to translate a plugin or a theme.
+- **Translation type**. You can select to translate a plugin, a theme or the 
+Android app.
 - **Translation from**. You can select a plugin to translate from 
 _Development (trunk)_ or from _Stable (latest release)_.
 - **Slug**. The slug of the plugin or theme. You can find it in the URL. For 

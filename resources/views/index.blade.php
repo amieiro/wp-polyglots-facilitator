@@ -11,12 +11,13 @@
                             {{-- Translation type --}}
                             <div class="form-group row">
                                 <label for="translationType" class="col-md-4 col-form-label text-md-right">{!! __('Translation type') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('You can select to translate a plugin or a theme.') }}"></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('You can select to translate a plugin, a theme or the Android app.') }}"></i>
                                 </label>
                                 <div class="col-md-6">
                                     <select id="translationType" class="form-control rounded-0" name="translationType" required>
-                                        <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value="plugin">{{ __('Plugin') }}</option>
-                                        <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value="theme"> {{ __('Theme') }}</option>
+                                        <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value='plugin'>{{ __('Plugin') }}</option>
+                                        <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value='theme'> {{ __('Theme') }}</option>
+                                        <option {{ old('translationType') === 'android' ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
                                     </select>
 
                                     @if ($errors->has('translationType'))
@@ -28,7 +29,7 @@
                             </div>
 
                             {{-- Translation from --}}
-                            <div class="form-group row">
+                            <div class="form-group row" id="row-translationFrom">
                                 <label for="translationFrom" class="col-md-4 col-form-label text-md-right">{!! __('Translation from') !!}
                                     <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{!!  __('You can select to translate from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}"></i>
                                 </label>
@@ -47,7 +48,7 @@
                             </div>
 
                             {{-- Slug --}}
-                            <div class="form-group row">
+                            <div class="form-group row" id="row-slug">
                                 <label for="slug" class="col-md-4 col-form-label text-md-right">{{ __('Slug') }}
                                     <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top"
                                        title="{{ __('The slug of the plugin or theme. <br>You can find it in the URL. <br>For example, &quot;wp-super-cache&quot; is the slug for the plugin &quot;WP Super Cache&quot; <br>Its URL is https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/') }}"></i>
@@ -64,7 +65,7 @@
                             </div>
 
                             {{-- Readme --}}
-                            <div class="form-group row">
+                            <div class="form-group row" id="row-readme">
                                 <label class="col-md-4 col-form-label text-md-right">{!! __('Download the readme') !!}
                                     <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('If you select this option, the app don\'t download the code translation, only the readme translation (only available for the plugins).') }}"></i>
                                 </label>
@@ -177,7 +178,7 @@
                                 <br>
                                 <h3>{!! __('Inputs') !!}</h3>
                                 <br>
-                                - {!! __('<strong>Translation type</strong>. You can select to translate a plugin or a theme.') !!}<br>
+                                - {!! __('<strong>Translation type</strong>. You can select to translate a plugin, a theme or the Android app.') !!}<br>
                                 - {!! __('<strong>Translation from</strong>. You can select to translate a plugin from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}<br>
                                 - {!! __('<strong>Slug</strong>. The slug of the plugin or theme. You can find it in the URL. For example, "wp-super-cache" is the slug for the plugin "WP Super Cache" and its URL is <a href="https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/" target="_blank">https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/</a>') !!}
                                 <br>
@@ -202,36 +203,82 @@
 @endsection
 @section('post-footer')
     <script type="application/javascript">
+
         // Enable the tooltip
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         });
+
         // Change the frontend language
-        $("#language").change(function () {
-            window.location = './locale/' + $("#language").val();
+        $('#language').change(function () {
+            window.location = './locale/' + $('#language').val();
         });
-        // Hide the translateStrings element
+
         $(document).ready(function () {
-            $("#row-translateStrings").hide();
+            showOrHideTranslationFrom();
+            showOrHideSlug();
+            showOrHideReadme();
             showOrHidetranslateStrings();
         });
+
+        $('#translationType').change(function () {
+            showOrHideTranslationFrom();
+            showOrHideSlug();
+            showOrHideReadme();
+        });
+
         // Show or hide the translateStrings element
         $('#originalLanguage, #destinationLanguage').change(function () {
             showOrHidetranslateStrings();
         });
 
+        function showOrHideTranslationFrom() {
+            switch ($('#translationType').val()) {
+                case 'android':
+                case 'theme':
+                    $('#row-translationFrom').hide();
+                    break;
+                case 'plugin':
+                    $('#row-translationFrom').show();
+            }
+        }
+
+        function showOrHideSlug() {
+            switch ($('#translationType').val()) {
+                case 'android':
+                    $('#row-slug').hide();
+                    $('#slug').removeAttr('required');
+                    break;
+                case 'theme':
+                case 'plugin':
+                    $('#row-slug').show();
+                    $('#slug').prop('required',true);
+            }
+        }
+
+        function showOrHideReadme() {
+            switch ($('#translationType').val()) {
+                case 'android':
+                    $('#row-readme').hide();
+                    break;
+                case 'theme':
+                case 'plugin':
+                    $('#row-readme').show();
+            }
+        }
+
         function showOrHidetranslateStrings() {
-            var originalLanguage = $("select[name=originalLanguage]").val();
-            var destinationLanguage = $("select[name=destinationLanguage]").val();
+            var originalLanguage = $('select[name=originalLanguage]').val();
+            var destinationLanguage = $('select[name=destinationLanguage]').val();
             $.ajax({
                 type: 'GET',
                 url: '/locale/change',
                 data: {originalLanguage: originalLanguage, destinationLanguage: destinationLanguage},
                 success: function (resp) {
                     if (resp > 0) {
-                        $("#row-translateStrings").show();
+                        $('#row-translateStrings').show();
                     } else {
-                        $("#row-translateStrings").hide();
+                        $('#row-translateStrings').hide();
                     }
                 },
                 error: function (e) {
@@ -239,5 +286,6 @@
                 }
             });
         }
+
     </script>
 @endsection
