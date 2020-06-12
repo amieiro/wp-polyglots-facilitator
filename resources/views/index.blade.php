@@ -17,6 +17,10 @@
                                     <select id="translationType" class="form-control rounded-0" name="translationType" required>
                                         <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value='plugin'>{{ __('Plugin') }}</option>
                                         <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value='theme'> {{ __('Theme') }}</option>
+                                        <option {{ old('translationType') === 'wordpress-development' ? 'selected' : '' }} value='wordpress-development'> {{ __('WordPress - Development') }}</option>
+                                        <option {{ old('translationType') === 'wordpress-continents-cities' ? 'selected' : '' }} value='wordpress-continents-cities'> {{ __('WordPress - Continents & Cities') }}</option>
+                                        <option {{ old('translationType') === 'wordpress-administration' ? 'selected' : '' }} value='wordpress-administration'> {{ __('WordPress - Administration') }}</option>
+                                        <option {{ old('translationType') === 'wordpress-network-admin' ? 'selected' : '' }} value='wordpress-network-admin'> {{ __('WordPress - Network Admin') }}</option>
                                         <option {{ old('translationType') === 'android' ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
                                         <option {{ old('translationType') === 'meta-forum' ? 'selected' : '' }} value='meta-forum'>{{ __('Meta - forum') }}</option>
                                     </select>
@@ -182,6 +186,10 @@
                                 - {!! __('<strong>Translation type</strong>. You can select to translate:') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('A plugin.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('A theme.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Development.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Continents & Cities.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Administration.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Network Administration.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The Android app.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The meta forum.') !!}<br>
                                 - {!! __('<strong>Translation from</strong>. You can select to translate a plugin from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}<br>
@@ -242,6 +250,10 @@
                 case 'android':
                 case 'theme':
                 case 'meta-forum':
+                case 'wordpress-development':
+                case 'wordpress-continents-cities':
+                case 'wordpress-administration':
+                case 'wordpress-network-admin':
                     $('#row-translationFrom').hide();
                     break;
                 case 'plugin':
@@ -253,6 +265,10 @@
             switch ($('#translationType').val()) {
                 case 'android':
                 case 'meta-forum':
+                case 'wordpress-development':
+                case 'wordpress-continents-cities':
+                case 'wordpress-administration':
+                case 'wordpress-network-admin':
                     $('#row-slug').hide();
                     $('#slug').removeAttr('required');
                     break;
@@ -267,6 +283,10 @@
             switch ($('#translationType').val()) {
                 case 'android':
                 case 'meta-forum':
+                case 'wordpress-development':
+                case 'wordpress-continents-cities':
+                case 'wordpress-administration':
+                case 'wordpress-network-admin':
                     $('#row-readme').hide();
                     break;
                 case 'theme':

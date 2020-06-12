@@ -26,8 +26,15 @@ the target language with the pre-translated strings in the source language.
 
 ### Inputs
 
-- **Translation type**. You can select to translate a plugin, a theme or the 
-Android app.
+- **Translation type**. You can select to translate:
+    - A plugin.
+    - A theme.
+    - The WordPress Development.
+    - The WordPress Continents & Cities.
+    - The WordPress Administration.
+    - The WordPress Network Administration.
+    - The Android app.
+    - The meta forum.
 - **Translation from**. You can select a plugin to translate from 
 _Development (trunk)_ or from _Stable (latest release)_.
 - **Slug**. The slug of the plugin or theme. You can find it in the URL. For 

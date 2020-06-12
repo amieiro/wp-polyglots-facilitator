@@ -141,6 +141,34 @@ class Translator
                     $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
                     $this->destinationLanguageFile = 'meta-forum-' . $this->destinationLanguage . '.po';
                     break;
+                case 'wordpress-development':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
+                    $this->sourceLanguageFile = 'wordpress-development-' . $this->originalLanguage . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'wordpress-development-' . $this->destinationLanguage . '.po';
+                    break;
+                case 'wordpress-continents-cities':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/cc/';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
+                    $this->sourceLanguageFile = 'wordpress-continents-cities-' . $this->originalLanguage . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'wordpress-continents-cities-' . $this->destinationLanguage . '.po';
+                    break;
+                case 'wordpress-administration':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/admin/';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
+                    $this->sourceLanguageFile = 'wordpress-administration-' . $this->originalLanguage . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'wordpress-administration-' . $this->destinationLanguage . '.po';
+                    break;
+                case 'wordpress-network-admin':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/admin/network/';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
+                    $this->sourceLanguageFile = 'wordpress-network-admin-' . $this->originalLanguage . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'wordpress-network-admin-' . $this->destinationLanguage . '.po';
+                    break;
             }
             $this->fullSourceLanguagePath = storage_path('app/' . $this->sourceLanguageFile);
             $this->sourceLanguagePath = 'app/' . $this->sourceLanguageFile;
@@ -393,10 +421,8 @@ class Translator
             case 'plugin':
             case 'theme':
                 return storage_path('app/' . $this->slug . '-' . $this->originalLanguage . '-' . $this->destinationLanguage . '-' . random_int(0, PHP_INT_MAX) . '.po');
-            case 'android':
-                return storage_path('app/android-' . $this->originalLanguage . '-' . $this->destinationLanguage . '-' . random_int(0, PHP_INT_MAX) . '.po');
-            case 'meta-forum':
-                return storage_path('app/meta-forum-' . $this->originalLanguage . '-' . $this->destinationLanguage . '-' . random_int(0, PHP_INT_MAX) . '.po');
+            default:
+                return storage_path('app/' . $this->translationType . '-' . $this->originalLanguage . '-' . $this->destinationLanguage . '-' . random_int(0, PHP_INT_MAX) . '.po');
         }
     }
 
@@ -406,10 +432,8 @@ class Translator
             case 'plugin':
             case 'theme':
                 return $this->slug . '-' . $this->destinationLanguage . '.po';
-            case 'android':
-                return 'android-' . $this->destinationLanguage . '.po';
-            case 'meta-forum':
-                return 'meta-forum-' . $this->destinationLanguage . '.po';
+            default:
+                return $this->translationType . '-' . $this->destinationLanguage . '.po';
         }
 
     }
