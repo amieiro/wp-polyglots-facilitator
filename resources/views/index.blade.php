@@ -11,13 +11,14 @@
                             {{-- Translation type --}}
                             <div class="form-group row">
                                 <label for="translationType" class="col-md-4 col-form-label text-md-right">{!! __('Translation type') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('You can select to translate a plugin, a theme or the Android app.') }}"></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('You can select the type of element to translate.') }}"></i>
                                 </label>
                                 <div class="col-md-6">
                                     <select id="translationType" class="form-control rounded-0" name="translationType" required>
                                         <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value='plugin'>{{ __('Plugin') }}</option>
                                         <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value='theme'> {{ __('Theme') }}</option>
                                         <option {{ old('translationType') === 'android' ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
+                                        <option {{ old('translationType') === 'meta-forum' ? 'selected' : '' }} value='meta-forum'>{{ __('Meta - forum') }}</option>
                                     </select>
 
                                     @if ($errors->has('translationType'))
@@ -178,7 +179,11 @@
                                 <br>
                                 <h3>{!! __('Inputs') !!}</h3>
                                 <br>
-                                - {!! __('<strong>Translation type</strong>. You can select to translate a plugin, a theme or the Android app.') !!}<br>
+                                - {!! __('<strong>Translation type</strong>. You can select to translate:') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('A plugin.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('A theme.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The Android app.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The meta forum.') !!}<br>
                                 - {!! __('<strong>Translation from</strong>. You can select to translate a plugin from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}<br>
                                 - {!! __('<strong>Slug</strong>. The slug of the plugin or theme. You can find it in the URL. For example, "wp-super-cache" is the slug for the plugin "WP Super Cache" and its URL is <a href="https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/" target="_blank">https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/</a>') !!}
                                 <br>
@@ -236,6 +241,7 @@
             switch ($('#translationType').val()) {
                 case 'android':
                 case 'theme':
+                case 'meta-forum':
                     $('#row-translationFrom').hide();
                     break;
                 case 'plugin':
@@ -246,6 +252,7 @@
         function showOrHideSlug() {
             switch ($('#translationType').val()) {
                 case 'android':
+                case 'meta-forum':
                     $('#row-slug').hide();
                     $('#slug').removeAttr('required');
                     break;
@@ -259,6 +266,7 @@
         function showOrHideReadme() {
             switch ($('#translationType').val()) {
                 case 'android':
+                case 'meta-forum':
                     $('#row-readme').hide();
                     break;
                 case 'theme':

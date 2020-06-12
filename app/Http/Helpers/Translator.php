@@ -133,6 +133,14 @@ class Translator
                     $this->sourceLanguageFile = 'android-' . $this->originalLanguage . '.po';
                     $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
                     $this->destinationLanguageFile = 'android-' . $this->destinationLanguage . '.po';
+                    break;
+                case 'meta-forum':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/forums/';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
+                    $this->sourceLanguageFile = 'android-' . $this->originalLanguage . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'meta-forum-' . $this->destinationLanguage . '.po';
+                    break;
             }
             $this->fullSourceLanguagePath = storage_path('app/' . $this->sourceLanguageFile);
             $this->sourceLanguagePath = 'app/' . $this->sourceLanguageFile;
@@ -387,6 +395,8 @@ class Translator
                 return storage_path('app/' . $this->slug . '-' . $this->originalLanguage . '-' . $this->destinationLanguage . '-' . random_int(0, PHP_INT_MAX) . '.po');
             case 'android':
                 return storage_path('app/android-' . $this->originalLanguage . '-' . $this->destinationLanguage . '-' . random_int(0, PHP_INT_MAX) . '.po');
+            case 'meta-forum':
+                return storage_path('app/meta-forum-' . $this->originalLanguage . '-' . $this->destinationLanguage . '-' . random_int(0, PHP_INT_MAX) . '.po');
         }
     }
 
@@ -398,6 +408,8 @@ class Translator
                 return $this->slug . '-' . $this->destinationLanguage . '.po';
             case 'android':
                 return 'android-' . $this->destinationLanguage . '.po';
+            case 'meta-forum':
+                return 'meta-forum-' . $this->destinationLanguage . '.po';
         }
 
     }
