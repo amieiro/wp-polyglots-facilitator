@@ -21,8 +21,9 @@
                                         <option {{ old('translationType') === 'wordpress-continents-cities' ? 'selected' : '' }} value='wordpress-continents-cities'> {{ __('WordPress - Continents & Cities') }}</option>
                                         <option {{ old('translationType') === 'wordpress-administration' ? 'selected' : '' }} value='wordpress-administration'> {{ __('WordPress - Administration') }}</option>
                                         <option {{ old('translationType') === 'wordpress-network-admin' ? 'selected' : '' }} value='wordpress-network-admin'> {{ __('WordPress - Network Admin') }}</option>
-                                        <option {{ old('translationType') === 'android' ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
                                         <option {{ old('translationType') === 'meta-forum' ? 'selected' : '' }} value='meta-forum'>{{ __('Meta - forum') }}</option>
+                                        <option {{ old('translationType') === 'android' ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
+                                        <option {{ old('translationType') === 'ios' ? 'selected' : '' }} value='ios'>{{ __('iOS app') }}</option>
                                     </select>
 
                                     @if ($errors->has('translationType'))
@@ -190,8 +191,9 @@
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Continents & Cities.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Administration.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Network Administration.') !!}<br>
-                                &nbsp;&nbsp;&nbsp; - {!! __('The Android app.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The meta forum.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The Android app.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('The iOS app.') !!}<br>
                                 - {!! __('<strong>Translation from</strong>. You can select to translate a plugin from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}<br>
                                 - {!! __('<strong>Slug</strong>. The slug of the plugin or theme. You can find it in the URL. For example, "wp-super-cache" is the slug for the plugin "WP Super Cache" and its URL is <a href="https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/" target="_blank">https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/</a>') !!}
                                 <br>
@@ -248,6 +250,7 @@
         function showOrHideTranslationFrom() {
             switch ($('#translationType').val()) {
                 case 'android':
+                case 'ios':
                 case 'theme':
                 case 'meta-forum':
                 case 'wordpress-development':
@@ -264,6 +267,7 @@
         function showOrHideSlug() {
             switch ($('#translationType').val()) {
                 case 'android':
+                case 'ios':
                 case 'meta-forum':
                 case 'wordpress-development':
                 case 'wordpress-continents-cities':
@@ -282,6 +286,7 @@
         function showOrHideReadme() {
             switch ($('#translationType').val()) {
                 case 'android':
+                case 'ios':
                 case 'meta-forum':
                 case 'wordpress-development':
                 case 'wordpress-continents-cities':
