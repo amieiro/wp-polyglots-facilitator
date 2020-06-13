@@ -21,7 +21,16 @@
                                         <option {{ old('translationType') === 'wordpress-continents-cities' ? 'selected' : '' }} value='wordpress-continents-cities'> {{ __('WordPress - Continents & Cities') }}</option>
                                         <option {{ old('translationType') === 'wordpress-administration' ? 'selected' : '' }} value='wordpress-administration'> {{ __('WordPress - Administration') }}</option>
                                         <option {{ old('translationType') === 'wordpress-network-admin' ? 'selected' : '' }} value='wordpress-network-admin'> {{ __('WordPress - Network Admin') }}</option>
-                                        <option {{ old('translationType') === 'meta-forum' ? 'selected' : '' }} value='meta-forum'>{{ __('Meta - forum') }}</option>
+                                        <option {{ old('translationType') === 'meta-wordcamp' ? 'selected' : '' }} value='meta-wordcamp'>{{ __('Meta - WordCamp.org') }}</option>
+                                        <option {{ old('translationType') === 'meta-wordpress-org' ? 'selected' : '' }} value='meta-wordpress-org'>{{ __('Meta - WordPress.org') }}</option>
+                                        <option {{ old('translationType') === 'meta-wordpress-plugins-directory' ? 'selected' : '' }} value='meta-wordpress-plugins-directory'>{{ __('Meta - WordPress Plugin Directory') }}</option>
+                                        <option {{ old('translationType') === 'meta-forums' ? 'selected' : '' }} value='meta-forums'>{{ __('Meta - Forums') }}</option>
+                                        <option {{ old('translationType') === 'meta-wordpress-theme-directory' ? 'selected' : '' }} value='meta-wordpress-theme-directory'>{{ __('Meta - WordPress Theme Directory') }}</option>
+                                        <option {{ old('translationType') === 'meta-o2' ? 'selected' : '' }} value='meta-o2'>{{ __('Meta - o2') }}</option>
+                                        <option {{ old('translationType') === 'meta-rosetta' ? 'selected' : '' }} value='meta-rosetta'>{{ __('Meta - Rosetta') }}</option>
+                                        <option {{ old('translationType') === 'meta-p2-breathe' ? 'selected' : '' }} value='meta-p2-breathe'>{{ __('Meta - P2 Breathe') }}</option>
+                                        <option {{ old('translationType') === 'meta-browse-happy' ? 'selected' : '' }} value='meta-browse-happy'>{{ __('Meta - Browse Happy') }}</option>
+                                        <option {{ old('translationType') === 'meta-get-involved' ? 'selected' : '' }} value='meta-get-involved'>{{ __('Meta - Get Involved') }}</option>
                                         <option {{ old('translationType') === 'android' ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
                                         <option {{ old('translationType') === 'ios' ? 'selected' : '' }} value='ios'>{{ __('iOS app') }}</option>
                                     </select>
@@ -249,54 +258,37 @@
 
         function showOrHideTranslationFrom() {
             switch ($('#translationType').val()) {
-                case 'android':
-                case 'ios':
-                case 'theme':
-                case 'meta-forum':
-                case 'wordpress-development':
-                case 'wordpress-continents-cities':
-                case 'wordpress-administration':
-                case 'wordpress-network-admin':
-                    $('#row-translationFrom').hide();
-                    break;
                 case 'plugin':
                     $('#row-translationFrom').show();
+                    break;
+                default:
+                    $('#row-translationFrom').hide();
             }
         }
 
         function showOrHideSlug() {
             switch ($('#translationType').val()) {
-                case 'android':
-                case 'ios':
-                case 'meta-forum':
-                case 'wordpress-development':
-                case 'wordpress-continents-cities':
-                case 'wordpress-administration':
-                case 'wordpress-network-admin':
-                    $('#row-slug').hide();
-                    $('#slug').removeAttr('required');
-                    break;
                 case 'theme':
                 case 'plugin':
                     $('#row-slug').show();
                     $('#slug').prop('required',true);
+                    break;
+                default:
+                    $('#row-slug').hide();
+                    $('#slug').removeAttr('required');
+                    break;
             }
         }
 
         function showOrHideReadme() {
             switch ($('#translationType').val()) {
-                case 'android':
-                case 'ios':
-                case 'meta-forum':
-                case 'wordpress-development':
-                case 'wordpress-continents-cities':
-                case 'wordpress-administration':
-                case 'wordpress-network-admin':
-                    $('#row-readme').hide();
-                    break;
                 case 'theme':
                 case 'plugin':
                     $('#row-readme').show();
+                    break;
+                default:
+                    $('#row-readme').hide();
+                    break;
             }
         }
 

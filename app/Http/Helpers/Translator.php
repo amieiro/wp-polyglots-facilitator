@@ -127,55 +127,62 @@ class Translator
                     $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/' . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
                     $this->destinationLanguageFile = 'wp-themes-' . $this->slug . '-' . $this->destinationLanguage . '.po';
                     break;
-                case 'meta-forum':
-                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/forums/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'android-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'meta-forum-' . $this->destinationLanguage . '.po';
-                    break;
                 case 'wordpress-development':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'wordpress-development-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'wordpress-development-' . $this->destinationLanguage . '.po';
                     break;
                 case 'wordpress-continents-cities':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/cc/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'wordpress-continents-cities-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'wordpress-continents-cities-' . $this->destinationLanguage . '.po';
                     break;
                 case 'wordpress-administration':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/admin/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'wordpress-administration-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'wordpress-administration-' . $this->destinationLanguage . '.po';
                     break;
                 case 'wordpress-network-admin':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/admin/network/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'wordpress-network-admin-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'wordpress-network-admin-' . $this->destinationLanguage . '.po';
+                    break;
+                case 'meta-wordcamp':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/wordcamp/';
+                    break;
+                case 'meta-wordpress-org':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/wordpress-org/';
+                    break;
+                case 'meta-wordpress-plugins-directory':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/plugins-v3/';
+                    break;
+                case 'meta-forums':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/forums/';
+                    break;
+                case 'meta-wordpress-theme-directory':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/themes/';
+                    break;
+                case 'meta-o2':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/o2/';
+                    break;
+                case 'meta-rosetta':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/rosetta/';
+                    break;
+                case 'meta-p2-breathe':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/p2-breathe/';
+                    break;
+                case 'meta-browse-happy':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/browsehappy/';
+                    break;
+                case 'meta-get-involved':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/get-involved/';
                     break;
                 case 'android':
                     $this->urlBase = 'https://translate.wordpress.org/projects/apps/android/dev/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'android-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'android-' . $this->destinationLanguage . '.po';
                     break;
                 case 'ios':
                     $this->urlBase = 'https://translate.wordpress.org/projects/apps/ios/dev/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'ios-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'ios-' . $this->destinationLanguage . '.po';
                     break;
+                default:
+            }
+            if (!(($this->translationType === 'plugin') || ($this->translationType === 'theme'))) {
+                $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
+                $this->sourceLanguageFile = $this->translationType . '-' . $this->originalLanguage . '.po';
+                $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
+                $this->destinationLanguageFile = $this->translationType . '-' . $this->destinationLanguage . '.po';
+
             }
             $this->fullSourceLanguagePath = storage_path('app/' . $this->sourceLanguageFile);
             $this->sourceLanguagePath = 'app/' . $this->sourceLanguageFile;
