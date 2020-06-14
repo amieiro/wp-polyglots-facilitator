@@ -200,7 +200,16 @@
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Continents & Cities.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Administration.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Network Administration.') !!}<br>
-                                &nbsp;&nbsp;&nbsp; - {!! __('The meta forum.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordCamp.org.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordPress.org.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordPress Plugin Directory.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Forums.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordPress Theme Directory.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - o2.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Rosetta.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Breathe.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Browser Happy.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Get involved.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The Android app.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The iOS app.') !!}<br>
                                 - {!! __('<strong>Translation from</strong>. You can select to translate a plugin from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}<br>
