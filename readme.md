@@ -115,6 +115,18 @@ Create the tables in the database and seed it:
 $ php artisan migrate:fresh --seed
 ```
 
+## Testing
+
+This tool is tested with [Laravel Dusk](https://laravel.com/docs/master/dusk).
+
+If you want to install it, please, follow the instructions on the 
+[official documentacion](https://laravel.com/docs/master/dusk#installation).
+Then you can simply execute the next command to test it:
+
+```
+$ php artisan dusk
+```
+
 ## Technologies
 
 This tool uses:
