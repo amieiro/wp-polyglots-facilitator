@@ -68,10 +68,10 @@
                         <a class="nav-link" href="https://www.jesusamieiro.com/acercade/" target="_blank">{{ __('About') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/amieiro/wptranslator/blob/master/LICENSE" target="_blank"> {{ __('License') }}</a>
+                        <a class="nav-link" href="https://github.com/amieiro/wp-polyglots-facilitator/blob/master/LICENSE" target="_blank"> {{ __('License') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="https://github.com/amieiro/wptranslator" target="_blank">GitHub</a>
+                        <a class="nav-link" href="https://github.com/amieiro/wp-polyglots-facilitator" target="_blank">GitHub</a>
                     </li>
                     <li class="nav-item">
                         <select id="language" class="form-control rounded-0" name="language">

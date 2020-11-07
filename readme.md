@@ -70,7 +70,7 @@ and access to the terminal.
 Clone the repo:
 
 ```
-$ git clone https://github.com/amieiro/wptranslator.git
+$ git clone https://github.com/amieiro/wp-polyglots-facilitator.git
 ```
 
 Install the dependencies: 
