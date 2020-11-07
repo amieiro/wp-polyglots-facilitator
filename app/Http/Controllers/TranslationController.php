@@ -20,11 +20,11 @@ class TranslationController extends Controller
 
     protected function downloadAndReplace(DownloadAndReplaceTranslation $request)
     {
+        $request->session()->put('translationRequest', $request->except('_token', 'download-po'));
         // Request validation
         $validator = Validator::make($request->all(), [
             'translationType' => 'required',
             'translationFrom' => 'required',
-//            'slug' => 'required',
             'originalLanguage' => 'required',
             'destinationLanguage' => 'required',
             'numberOfStrings' => 'required|integer|min:1|max:1000000'
@@ -32,7 +32,6 @@ class TranslationController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-
         try {
             $this->translationType = $request->translationType;
             $this->translationFrom = $request->translationFrom;

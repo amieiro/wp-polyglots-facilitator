@@ -15,24 +15,24 @@
                                 </label>
                                 <div class="col-md-6">
                                     <select id="translationType" class="form-control rounded-0" name="translationType" required>
-                                        <option {{ old('translationType') === 'plugin' ? 'selected' : '' }} value='plugin'>{{ __('Plugin') }}</option>
-                                        <option {{ old('translationType') === 'theme' ? 'selected' : '' }} value='theme'> {{ __('Theme') }}</option>
-                                        <option {{ old('translationType') === 'wordpress-development' ? 'selected' : '' }} value='wordpress-development'> {{ __('WordPress - Development') }}</option>
-                                        <option {{ old('translationType') === 'wordpress-continents-cities' ? 'selected' : '' }} value='wordpress-continents-cities'> {{ __('WordPress - Continents & Cities') }}</option>
-                                        <option {{ old('translationType') === 'wordpress-administration' ? 'selected' : '' }} value='wordpress-administration'> {{ __('WordPress - Administration') }}</option>
-                                        <option {{ old('translationType') === 'wordpress-network-admin' ? 'selected' : '' }} value='wordpress-network-admin'> {{ __('WordPress - Network Admin') }}</option>
-                                        <option {{ old('translationType') === 'meta-wordcamp' ? 'selected' : '' }} value='meta-wordcamp'>{{ __('Meta - WordCamp.org') }}</option>
-                                        <option {{ old('translationType') === 'meta-wordpress-org' ? 'selected' : '' }} value='meta-wordpress-org'>{{ __('Meta - WordPress.org') }}</option>
-                                        <option {{ old('translationType') === 'meta-wordpress-plugins-directory' ? 'selected' : '' }} value='meta-wordpress-plugins-directory'>{{ __('Meta - WordPress Plugin Directory') }}</option>
-                                        <option {{ old('translationType') === 'meta-forums' ? 'selected' : '' }} value='meta-forums'>{{ __('Meta - Forums') }}</option>
-                                        <option {{ old('translationType') === 'meta-wordpress-theme-directory' ? 'selected' : '' }} value='meta-wordpress-theme-directory'>{{ __('Meta - WordPress Theme Directory') }}</option>
-                                        <option {{ old('translationType') === 'meta-o2' ? 'selected' : '' }} value='meta-o2'>{{ __('Meta - o2') }}</option>
-                                        <option {{ old('translationType') === 'meta-rosetta' ? 'selected' : '' }} value='meta-rosetta'>{{ __('Meta - Rosetta') }}</option>
-                                        <option {{ old('translationType') === 'meta-p2-breathe' ? 'selected' : '' }} value='meta-p2-breathe'>{{ __('Meta - P2 Breathe') }}</option>
-                                        <option {{ old('translationType') === 'meta-browse-happy' ? 'selected' : '' }} value='meta-browse-happy'>{{ __('Meta - Browse Happy') }}</option>
-                                        <option {{ old('translationType') === 'meta-get-involved' ? 'selected' : '' }} value='meta-get-involved'>{{ __('Meta - Get Involved') }}</option>
-                                        <option {{ old('translationType') === 'android' ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
-                                        <option {{ old('translationType') === 'ios' ? 'selected' : '' }} value='ios'>{{ __('iOS app') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '') === 'plugin') ? 'selected' : '' }} value='plugin'>{{ __('Plugin') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'theme') ? 'selected' : '' }} value='theme'> {{ __('Theme') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wordpress-development') ? 'selected' : '' }} value='wordpress-development'> {{ __('WordPress - Development') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wordpress-continents-cities') ? 'selected' : '' }} value='wordpress-continents-cities'> {{ __('WordPress - Continents & Cities') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wordpress-administration') ? 'selected' : '' }} value='wordpress-administration'> {{ __('WordPress - Administration') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wordpress-network-admin') ? 'selected' : '' }} value='wordpress-network-admin'> {{ __('WordPress - Network Admin') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordcamp') ? 'selected' : '' }} value='meta-wordcamp'>{{ __('Meta - WordCamp.org') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordpress-org') ? 'selected' : '' }} value='meta-wordpress-org'>{{ __('Meta - WordPress.org') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordpress-plugins-directory') ? 'selected' : '' }} value='meta-wordpress-plugins-directory'>{{ __('Meta - WordPress Plugin Directory') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-forums') ? 'selected' : '' }} value='meta-forums'>{{ __('Meta - Forums') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordpress-theme-directory') ? 'selected' : '' }} value='meta-wordpress-theme-directory'>{{ __('Meta - WordPress Theme Directory') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-o2') ? 'selected' : '' }} value='meta-o2'>{{ __('Meta - o2') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-rosetta') ? 'selected' : '' }} value='meta-rosetta'>{{ __('Meta - Rosetta') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-p2-breathe') ? 'selected' : '' }} value='meta-p2-breathe'>{{ __('Meta - P2 Breathe') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-browse-happy') ? 'selected' : '' }} value='meta-browse-happy'>{{ __('Meta - Browse Happy') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-get-involved') ? 'selected' : '' }} value='meta-get-involved'>{{ __('Meta - Get Involved') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'android') ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'ios') ? 'selected' : '' }} value='ios'>{{ __('iOS app') }}</option>
                                     </select>
 
                                     @if ($errors->has('translationType'))
@@ -50,8 +50,8 @@
                                 </label>
                                 <div class="col-md-6">
                                     <select id="translationFrom" class="form-control rounded-0" name="translationFrom" required>
-                                        <option {{ old('translationFrom') === 'dev' ? 'selected' : '' }} value="dev">{{ __('Development') }}</option>
-                                        <option {{ old('translationFrom') === 'stable' ? 'selected' : '' }} value="stable"> {{ __('Stable') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationFrom'] ?? '')  === 'dev') ? 'selected' : '' }} value="dev">{{ __('Development') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationFrom'] ?? '')  === 'stable') ? 'selected' : '' }} value="stable"> {{ __('Stable') }}</option>
                                     </select>
 
                                     @if ($errors->has('translationFrom'))
@@ -69,7 +69,7 @@
                                        title="{{ __('The slug of the plugin or theme. <br>You can find it in the URL. <br>For example, &quot;wp-super-cache&quot; is the slug for the plugin &quot;WP Super Cache&quot; <br>Its URL is https://translate.wordpress.org/locale/gl/default/wp-plugins/wp-super-cache/') }}"></i>
                                 </label>
                                 <div class="col-md-6">
-                                    <input id="slug" type="text" class="form-control rounded-0" name="slug" value="{{ old('slug') }}" required autofocus>
+                                    <input id="slug" type="text" class="form-control rounded-0" name="slug" value="{{ session()->get('translationRequest')['slug'] ?? '' }}" required autofocus>
 
                                     @if ($errors->has('slug'))
                                         <span class="invalid-feedback" role="alert">
@@ -87,7 +87,7 @@
 
                                 <div class="col-md-6">
                                     <div class="custom-control custom-switch">
-                                        <input type="checkbox" id="readme" name="readme" class="custom-control-input custom-checkbox">
+                                        <input type="checkbox" id="readme" name="readme" class="custom-control-input custom-checkbox" {{ ((session()->get('translationRequest')['readme'] ?? '') === 'on') ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="readme"> </label>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@
                                 <div class="col-md-6">
                                     <select id="originalLanguage" class="form-control rounded-0" name="originalLanguage">
                                         @foreach($locales as $key => $value)
-                                            <option {{ old('originalLanguage') == $key ? "selected" : "" }} value="{{ $key }}">{{ $value }}</option>
+                                            <option {{ ((session()->get('translationRequest')['originalLanguage'] ?? '') === $key) ? "selected" : "" }} value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
 
@@ -123,7 +123,7 @@
                                 <div class="col-md-6">
                                     <select id="destinationLanguage" class="form-control rounded-0" name="destinationLanguage">
                                         @foreach($locales as $key => $value)
-                                            <option {{ old('destinationLanguage') == $key ? "selected" : "" }} value="{{ $key }}">{{ $value }}</option>
+                                            <option {{ ((session()->get('translationRequest')['destinationLanguage'] ?? '') === $key) ? "selected" : "" }} value="{{ $key }}">{{ $value }}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('destinationLanguage'))
@@ -141,7 +141,7 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="numberOfStrings" type="text" class="form-control rounded-0" name="numberOfStrings" value="{{ old('numberOfStrings', '25') }}" required autofocus>
+                                    <input id="numberOfStrings" type="text" class="form-control rounded-0" name="numberOfStrings" value="{{ session()->get('translationRequest')['numberOfStrings'] ?? '25' }}" required autofocus>
                                     @if ($errors->has('numberOfStrings'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('numberOfStrings') }}</strong>
@@ -157,7 +157,7 @@
                                 </label>
                                 <div class="col-md-6">
                                     <div class="custom-control custom-switch">
-                                        <input type="checkbox" id="translateStrings" name="translateStrings" class="custom-control-input custom-checkbox">
+                                        <input type="checkbox" id="translateStrings" name="translateStrings" class="custom-control-input custom-checkbox" {{ ((session()->get('translationRequest')['translateStrings'] ?? '') === 'on') ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="translateStrings"> </label>
                                     </div>
                                 </div>
