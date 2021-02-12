@@ -36,6 +36,7 @@ abstract class DuskTestCase extends BaseTestCase
         ]);
 
         $options->setExperimentalOption('prefs', [
+            'download.prompt_for_download' => false,
             'download.default_directory' => storage_path('temp')
         ]);
 
