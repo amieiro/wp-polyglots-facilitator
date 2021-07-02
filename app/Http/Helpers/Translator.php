@@ -6,7 +6,7 @@ namespace App\Http\Helpers;
 // todo: put in an .env variable
 ini_set('max_execution_time', 180);
 
-use App\Helpers\TranslationBlock;
+use App\Http\Helpers\TranslationBlock;
 use App\Models\WordTranslation;
 use Exception;
 use Illuminate\Support\Collection;
@@ -126,6 +126,9 @@ class Translator
                     $this->sourceLanguageFile = 'wp-themes-' . $this->slug . '-' . $this->originalLanguage . '.po';
                     $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/' . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
                     $this->destinationLanguageFile = 'wp-themes-' . $this->slug . '-' . $this->destinationLanguage . '.po';
+                    break;
+                case 'pattern':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/patterns/core/';
                     break;
                 case 'wordpress-development':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp/dev/';

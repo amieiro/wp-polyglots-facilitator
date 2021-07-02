@@ -17,6 +17,7 @@
                                     <select id="translationType" class="form-control rounded-0" name="translationType" required>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '') === 'plugin') ? 'selected' : '' }} value='plugin'>{{ __('Plugin') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'theme') ? 'selected' : '' }} value='theme'> {{ __('Theme') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'pattern') ? 'selected' : '' }} value='pattern'> {{ __('Pattern') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wordpress-development') ? 'selected' : '' }} value='wordpress-development'> {{ __('WordPress - Development') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wordpress-continents-cities') ? 'selected' : '' }} value='wordpress-continents-cities'> {{ __('WordPress - Continents & Cities') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wordpress-administration') ? 'selected' : '' }} value='wordpress-administration'> {{ __('WordPress - Administration') }}</option>
@@ -196,6 +197,7 @@
                                 - {!! __('<strong>Translation type</strong>. You can select to translate:') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('A plugin.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('A theme.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('A pattern.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Development.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Continents & Cities.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Administration.') !!}<br>
