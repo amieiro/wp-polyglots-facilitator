@@ -172,6 +172,9 @@ class Translator
                 case 'meta-get-involved':
                     $this->urlBase = 'https://translate.wordpress.org/projects/meta/get-involved/';
                     break;
+                case 'meta-pattern-directory':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/pattern-directory/';
+                    break;
                 case 'android':
                     $this->urlBase = 'https://translate.wordpress.org/projects/apps/android/dev/';
                     break;

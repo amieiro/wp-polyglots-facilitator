@@ -32,6 +32,7 @@
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-p2-breathe') ? 'selected' : '' }} value='meta-p2-breathe'>{{ __('Meta - P2 Breathe') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-browse-happy') ? 'selected' : '' }} value='meta-browse-happy'>{{ __('Meta - Browse Happy') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-get-involved') ? 'selected' : '' }} value='meta-get-involved'>{{ __('Meta - Get Involved') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-pattern-directory') ? 'selected' : '' }} value='meta-pattern-directory'>{{ __('Meta - Pattern Directory') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'android') ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'ios') ? 'selected' : '' }} value='ios'>{{ __('iOS app') }}</option>
                                     </select>
@@ -212,6 +213,7 @@
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Breathe.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Browser Happy.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Get involved.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Pattern Directory.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The Android app.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The iOS app.') !!}<br>
                                 - {!! __('<strong>Translation from</strong>. You can select to translate a plugin from <i>Development (trunk)</i> or from <i>Stable (latest release)</i>.') !!}<br>
