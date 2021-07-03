@@ -198,7 +198,7 @@
                                 - {!! __('<strong>Translation type</strong>. You can select to translate:') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('A plugin.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('A theme.') !!}<br>
-                                &nbsp;&nbsp;&nbsp; - {!! __('A pattern.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Patterns.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Development.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Continents & Cities.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The WordPress Administration.') !!}<br>
