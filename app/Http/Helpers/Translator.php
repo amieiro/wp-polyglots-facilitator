@@ -175,6 +175,9 @@ class Translator
                 case 'meta-pattern-directory':
                     $this->urlBase = 'https://translate.wordpress.org/projects/meta/pattern-directory/';
                     break;
+                case 'meta-learn-wordpress':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/learn-wordpress/';
+                    break;
                 case 'android':
                     $this->urlBase = 'https://translate.wordpress.org/projects/apps/android/dev/';
                     break;
