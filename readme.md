@@ -45,6 +45,7 @@ the target language with the pre-translated strings in the source languageo2
     - Meta - Get involved.
     - Meta - Pattern Directory.
     - Meta - Learn WordPress.
+    - Meta - Openverse.
     - The Android app.
     - The iOS app.
 - **Translation from**. You can select a plugin to translate from 

@@ -178,6 +178,9 @@ class Translator
                 case 'meta-learn-wordpress':
                     $this->urlBase = 'https://translate.wordpress.org/projects/meta/learn-wordpress/';
                     break;
+                case 'meta-openverse':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/openverse/';
+                    break;
                 case 'android':
                     $this->urlBase = 'https://translate.wordpress.org/projects/apps/android/dev/';
                     break;

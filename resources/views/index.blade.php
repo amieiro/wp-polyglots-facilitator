@@ -34,6 +34,7 @@
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-get-involved') ? 'selected' : '' }} value='meta-get-involved'>{{ __('Meta - Get Involved') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-pattern-directory') ? 'selected' : '' }} value='meta-pattern-directory'>{{ __('Meta - Pattern Directory') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-learn-wordpress') ? 'selected' : '' }} value='meta-learn-wordpress'>{{ __('Meta - Learn WordPress') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-openverse') ? 'selected' : '' }} value='meta-openverse'>{{ __('Meta - Openverse') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'android') ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'ios') ? 'selected' : '' }} value='ios'>{{ __('iOS app') }}</option>
                                     </select>
