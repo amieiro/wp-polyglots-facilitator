@@ -140,6 +140,26 @@ Then you can simply execute the next command to test it:
 $ php artisan dusk
 ```
 
+## Commands
+
+This app has some extra commands.
+
+### Scrap translations
+
+This command download the translations files (.po) for some WordPress items: plugins, themes,... 
+(currently, only works with themes) and stores the original strings and the translations in the 
+database. To run this command, execute:
+
+```
+php artisan wp-translation:scrap-translations
+```
+
+To see the options, execute:
+
+```
+php artisan wp-translation:scrap-translations --help
+```
+
 ## Technologies
 
 This tool uses:
