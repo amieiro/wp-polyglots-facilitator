@@ -118,6 +118,27 @@
                                 </div>
                             </div>
 
+                            {{-- Variation for the original language --}}
+                            <div class="form-group row">
+                                <label for="originalLanguageVariation" class="col-md-4 col-form-label text-md-right">{!! __('Variation') !!}
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('The variation for the original language. If you don\'t know what is this, use the "default" value.') }}"></i>
+                                </label>
+
+                                <div class="col-md-6">
+                                    <select id="originalLanguageVariation" class="form-control rounded-0" name="originalLanguageVariation">
+                                        @foreach($variations as $variation)
+                                            <option {{ ((session()->get('translationRequest')['originalLanguageVariation'] ?? '') === $variation) ? "selected" : "" }} value="{{ $variation }}">{{ $variation }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @if ($errors->has('originalLanguageVariation'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('originalLanguageVariation') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             {{-- Destination language --}}
                             <div class="form-group row">
                                 <label for="destinationLanguage" class="col-md-4 col-form-label text-md-right">{!! __('Destination language') !!}
@@ -133,6 +154,27 @@
                                     @if ($errors->has('destinationLanguage'))
                                         <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('destinationLanguage') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            {{-- Variation for the destination language --}}
+                            <div class="form-group row">
+                                <label for="destinationLanguageVariation" class="col-md-4 col-form-label text-md-right">{!! __('Variation') !!}
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('The variation for the destination language. If you don\'t know what is this, use the "default" value.') }}"></i>
+                                </label>
+
+                                <div class="col-md-6">
+                                    <select id="originalLanguageVariation" class="form-control rounded-0" name="originalLanguageVariation">
+                                        @foreach($variations as $variation)
+                                            <option {{ ((session()->get('translationRequest')['destinationLanguageVariation'] ?? '') === $variation) ? "selected" : "" }} value="{{ $variation }}">{{ $variation }}</option>
+                                        @endforeach
+                                    </select>
+
+                                    @if ($errors->has('destinationLanguageVariation'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('destinationLanguageVariation') }}</strong>
                                     </span>
                                     @endif
                                 </div>
