@@ -18,7 +18,7 @@ class HomeController extends Controller
     public function index()
     {
         $locales = Locale::orderBy('locale_name', 'ASC')->pluck('locale_name', 'locale_code');
-		$variations = ['default', 'a090', 'formal', 'informal', 'Valencia'];
+		$variations = ['default', 'a090', 'formal', 'informal', 'valencia'];
         return view('index', compact('locales', 'variations'));
     }
 

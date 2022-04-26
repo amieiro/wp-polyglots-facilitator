@@ -19,7 +19,9 @@ class Translator
     protected $slug;
     protected $readme = null;
     protected $originalLanguage;
+    protected $originalLanguageVariation;
     protected $destinationLanguage;
+    protected $destinationLanguageVariation;
     protected $numberOfStrings;
     protected $translateStrings = null;
 
@@ -48,12 +50,14 @@ class Translator
      * @param string $slug
      * @param boolean $readme
      * @param string $originalLanguage
+     * @param string $originalLanguageVariation
      * @param string $destinationLanguage
+     * @param string $destinationLanguageVariation
      * @param integer $numberOfStrings
      * @param boolean $translateStrings
      *
      */
-    public function __construct($translationType, $translationFrom, $slug, $readme, $originalLanguage, $destinationLanguage, $numberOfStrings, $translateStrings)
+    public function __construct($translationType, $translationFrom, $slug, $readme, $originalLanguage, $originalLanguageVariation, $destinationLanguage, $destinationLanguageVariation, $numberOfStrings, $translateStrings)
     {
         try {
             $this->translationType = $translationType;
@@ -61,7 +65,9 @@ class Translator
             $this->slug = $slug;
             $this->readme = ($readme === 'on') ? '-readme' : '';
             $this->originalLanguage = $originalLanguage;
+            $this->originalLanguageVariation = $originalLanguageVariation;
             $this->destinationLanguage = $destinationLanguage;
+            $this->destinationLanguageVariation = $destinationLanguageVariation;
             $this->numberOfStrings = $numberOfStrings;
             $this->translateStrings = $translateStrings;
         } catch (Exception $exception) {
@@ -115,17 +121,17 @@ class Translator
             switch ($this->translationType) {
                 case 'plugin':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp-plugins/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->slug . '/' . $this->translationFrom . $this->readme . '/' . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'wp-plugins-' . $this->slug . '-' . $this->translationFrom . '-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/' . $this->translationFrom . $this->readme . '/' . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'wp-plugins-' . $this->slug . '-' . $this->translationFrom . '-' . $this->destinationLanguage . '.po';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->slug . '/' . $this->translationFrom . $this->readme . '/' . $this->originalLanguage . '/' . $this->originalLanguageVariation . '/export-translations/';
+                    $this->sourceLanguageFile = 'wp-plugins-' . $this->slug . '-' . $this->translationFrom . '-' . $this->originalLanguage . '-' . $this->originalLanguageVariation . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/' . $this->translationFrom . $this->readme . '/' . $this->destinationLanguage . '/' . $this->destinationLanguageVariation . '/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'wp-plugins-' . $this->slug . '-' . $this->translationFrom . '-' . $this->destinationLanguage . '-' . $this->destinationLanguageVariation . '.po';
                     break;
                 case 'theme':
                     $this->urlBase = 'https://translate.wordpress.org/projects/wp-themes/';
-                    $this->urlSourceLanguageFile = $this->urlBase . $this->slug . '/' . $this->originalLanguage . '/default/export-translations/';
-                    $this->sourceLanguageFile = 'wp-themes-' . $this->slug . '-' . $this->originalLanguage . '.po';
-                    $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/' . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                    $this->destinationLanguageFile = 'wp-themes-' . $this->slug . '-' . $this->destinationLanguage . '.po';
+                    $this->urlSourceLanguageFile = $this->urlBase . $this->slug . '/' . $this->originalLanguage . '/' . $this->originalLanguageVariation . '/export-translations/';
+                    $this->sourceLanguageFile = 'wp-themes-' . $this->slug . '-' . $this->originalLanguage . '-' . $this->originalLanguageVariation . '.po';
+                    $this->urlDestinationLanguageFile = $this->urlBase . $this->slug . '/' . $this->destinationLanguage . '/' . $this->destinationLanguageVariation . '/export-translations/?filters%5Bstatus%5D=untranslated';
+                    $this->destinationLanguageFile = 'wp-themes-' . $this->slug . '-' . $this->destinationLanguage . '-' . $this->destinationLanguageVariation . '.po';
                     break;
                 case 'pattern':
                     $this->urlBase = 'https://translate.wordpress.org/projects/patterns/core/';
@@ -190,10 +196,10 @@ class Translator
                 default:
             }
             if (!(($this->translationType === 'plugin') || ($this->translationType === 'theme'))) {
-                $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/default/export-translations/';
-                $this->sourceLanguageFile = $this->translationType . '-' . $this->originalLanguage . '.po';
-                $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/default/export-translations/?filters%5Bstatus%5D=untranslated';
-                $this->destinationLanguageFile = $this->translationType . '-' . $this->destinationLanguage . '.po';
+                $this->urlSourceLanguageFile = $this->urlBase . $this->originalLanguage . '/' . $this->originalLanguageVariation . '/export-translations/';
+                $this->sourceLanguageFile = $this->translationType . '-' . $this->originalLanguage . '-' . $this->originalLanguageVariation . '.po';
+                $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/' . $this->destinationLanguageVariation . '/export-translations/?filters%5Bstatus%5D=untranslated';
+                $this->destinationLanguageFile = $this->translationType . '-' . $this->destinationLanguage . '-' . $this->destinationLanguageVariation . '.po';
 
             }
             $this->fullSourceLanguagePath = storage_path('app/' . $this->sourceLanguageFile);
@@ -217,7 +223,6 @@ class Translator
             throw new Exception($this->error);
         }
     }
-
 
     /**
      * Create a collection from a .po file
@@ -300,18 +305,28 @@ class Translator
     function searchAndReplaceStrings(Collection $originalCollection, Collection $destinationCollection)
     {
         try {
-            foreach ($destinationCollection as $destinationObject) {
+            $destinationCollection = $destinationCollection->sortBy(function ($value, $key) {
+                return strlen($value->msgid);
+            }, SORT_REGULAR, false);
+            $counter=0;
+            foreach ($destinationCollection as $key => $destinationObject) {
                 $originalObject = $originalCollection->filter(function ($item) use ($destinationObject) {
                     return $item->msgid === $destinationObject->msgid;
                 })->first();
+                if (('' == $originalObject->msgstr) || (null == $originalObject->msgstr)) { // If the original doesn't have translation, skip this string.
+                    $destinationCollection->forget($key);
+                    continue;
+                }
                 $destinationObject->msgstr = $originalObject->msgstr;
                 $destinationObject->msgstr0 = $originalObject->msgstr0;
                 $destinationObject->msgstr1 = $originalObject->msgstr1;
+                $counter++;
+                if ($counter >= $this->numberOfStrings) { // Only process the number of strings required.
+                    break;
+                }
             }
-            $orderCollection = $destinationCollection->sortBy(function ($value, $key) {
-                return strlen($value->msgid);
-            }, SORT_REGULAR, false);
-            return $orderCollection;
+
+           return $destinationCollection->take($this->numberOfStrings);
         } catch (Exception $exception) {
             $this->error = 'Error in the searchAndReplaceStrings method: ' . $exception->getMessage();
             throw new Exception($this->error);
@@ -321,7 +336,7 @@ class Translator
     /**
      * Replace words or short strings in a collection from an original language
      * to a destination language
-     * This matches are stored in the "word_translations" table of the database
+     * These matches are stored in the "word_translations" table of the database
      *
      * @param Collection $collection
      * @param string $originalLanguage

@@ -166,7 +166,7 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <select id="originalLanguageVariation" class="form-control rounded-0" name="originalLanguageVariation">
+                                    <select id="destinationLanguageVariation" class="form-control rounded-0" name="destinationLanguageVariation">
                                         @foreach($variations as $variation)
                                             <option {{ ((session()->get('translationRequest')['destinationLanguageVariation'] ?? '') === $variation) ? "selected" : "" }} value="{{ $variation }}">{{ $variation }}</option>
                                         @endforeach
@@ -206,6 +206,17 @@
                                         <input type="checkbox" id="translateStrings" name="translateStrings" class="custom-control-input custom-checkbox" {{ ((session()->get('translationRequest')['translateStrings'] ?? '') === 'on') ? 'checked' : '' }}>
                                         <label class="custom-control-label" for="translateStrings"> </label>
                                     </div>
+                                </div>
+                            </div>
+
+                            {{-- Global errors --}}
+                            <div class="form-group row" id="row-global-errors">
+                                <div class="col-md-12">
+                                    @if ($errors->has('global-errors'))
+                                        <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('global-errors') }}</strong>
+                                    </span>
+                                    @endif
                                 </div>
                             </div>
 

@@ -14,7 +14,9 @@ class TranslationController extends Controller
     protected $slug;
     protected $readme = null;
     protected $originalLanguage;
+    protected $originalLanguageVariation;
     protected $destinationLanguage;
+    protected $destinationLanguageVariation;
     protected $numberOfStrings;
     protected $translateStrings = null;
 
@@ -26,7 +28,9 @@ class TranslationController extends Controller
             'translationType' => 'required',
             'translationFrom' => 'required',
             'originalLanguage' => 'required',
+            'originalLanguageVariation' => 'required',
             'destinationLanguage' => 'required',
+            'destinationLanguageVariation' => 'required',
             'numberOfStrings' => 'required|integer|min:1|max:1000000'
         ]);
         if ($validator->fails()) {
@@ -38,15 +42,28 @@ class TranslationController extends Controller
             $this->slug = $request->slug;
             $this->readme = $request->readme;
             $this->originalLanguage = $request->originalLanguage;
+            $this->originalLanguageVariation = $request->originalLanguageVariation;
             $this->destinationLanguage = $request->destinationLanguage;
+            $this->destinationLanguageVariation = $request->destinationLanguageVariation;
             $this->numberOfStrings = $request->numberOfStrings;
             $this->translateStrings = $request->translateStrings;
-            $translator = new Translator($this->translationType, $this->translationFrom, $this->slug, $this->readme, $this->originalLanguage, $this->destinationLanguage, $this->numberOfStrings, $this->translateStrings);
+            $translator = new Translator(
+				$this->translationType,
+				$this->translationFrom,
+				$this->slug,
+				$this->readme,
+				$this->originalLanguage,
+				$this->originalLanguageVariation,
+				$this->destinationLanguage,
+				$this->destinationLanguageVariation,
+				$this->numberOfStrings,
+				$this->translateStrings
+            );
             $translator->translate();
             if ($translator->error === null) {
                 return response()->download($translator->fullOutcomePath, $translator->fileNameToReturn);
             }
-            $validator->errors()->add('slug', __('This slug doesn\'t exist!'));
+            $validator->errors()->add('global-errors', $translator->error);
             return redirect()->back()->withErrors($validator)->withInput();
         } catch (\Exception $exception) {
             echo $exception;
