@@ -70,5 +70,8 @@
     "Output": "Salida",
     "The resulting file is a \"po\" file of the missing strings to be translated into the target language with the pre-translated strings in the source language.": "El archivo resultante es un «po» con las cadenas que faltan para ser traducidas al idioma destino con las cadenas pretraducidas en el idioma original.",
     "This process may take a few seconds. Be patient.": "Este proceso puede tardar unos segundos. Ten paciencia.",
-    "Do not click \"Download .po\" more than once.": "No hagas clic en «Descargar .po» más de una vez."
+    "Do not click \"Download .po\" more than once.": "No hagas clic en «Descargar .po» más de una vez.",
+    "Variation": "Variación",
+    "The variation for the original language. If you don\\'t know what is this, use the \"default\" value.": "La variación para el idioma original. Si no sabes lo que es esto, usa el valor \"default\".",
+    "The variation for the destination language. If you don\\'t know what is this, use the \"default\" value.": "La variación para el idioma de destino. Si no sabes lo que es esto, usa el valor \"default\"."
 }

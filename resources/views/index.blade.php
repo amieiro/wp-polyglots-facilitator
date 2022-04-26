@@ -121,7 +121,7 @@
                             {{-- Variation for the original language --}}
                             <div class="form-group row">
                                 <label for="originalLanguageVariation" class="col-md-4 col-form-label text-md-right">{!! __('Variation') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('The variation for the original language. If you don\'t know what is this, use the "default" value.') }}"></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __("The variation for the original language. If you don\\'t know what is this, use the \"default\" value.") }}"></i>
                                 </label>
 
                                 <div class="col-md-6">
@@ -162,7 +162,7 @@
                             {{-- Variation for the destination language --}}
                             <div class="form-group row">
                                 <label for="destinationLanguageVariation" class="col-md-4 col-form-label text-md-right">{!! __('Variation') !!}
-                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __('The variation for the destination language. If you don\'t know what is this, use the "default" value.') }}"></i>
+                                    <i class="fa fa-info-circle" aria-hidden="true" data-toggle="tooltip" data-html="true" data-placement="top" title="{{ __("The variation for the destination language. If you don\'t know what is this, use the \"default\" value.") }}"></i>
                                 </label>
 
                                 <div class="col-md-6">
