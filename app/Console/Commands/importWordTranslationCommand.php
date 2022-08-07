@@ -21,7 +21,7 @@ class importWordTranslationCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Truncate the "word_translations" table and import the translations between two languages from an ODS file';
+    protected $description = 'Truncate the "word_translations" table and import all translations between two languages from an ODS file';
 
     /**
      * Create a new command instance.
