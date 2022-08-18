@@ -25,14 +25,14 @@
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordcamp') ? 'selected' : '' }} value='meta-wordcamp'>{{ __('Meta - WordCamp.org') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordpress-org') ? 'selected' : '' }} value='meta-wordpress-org'>{{ __('Meta - WordPress.org') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordpress-plugins-directory') ? 'selected' : '' }} value='meta-wordpress-plugins-directory'>{{ __('Meta - WordPress Plugin Directory') }}</option>
-                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-forums') ? 'selected' : '' }} value='meta-forums'>{{ __('Meta - Forums') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-wordpress-theme-directory') ? 'selected' : '' }} value='meta-wordpress-theme-directory'>{{ __('Meta - WordPress Theme Directory') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-pattern-directory') ? 'selected' : '' }} value='meta-pattern-directory'>{{ __('Meta - Pattern Directory') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-forums') ? 'selected' : '' }} value='meta-forums'>{{ __('Meta - Forums') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-o2') ? 'selected' : '' }} value='meta-o2'>{{ __('Meta - o2') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-rosetta') ? 'selected' : '' }} value='meta-rosetta'>{{ __('Meta - Rosetta') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-p2-breathe') ? 'selected' : '' }} value='meta-p2-breathe'>{{ __('Meta - P2 Breathe') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-browse-happy') ? 'selected' : '' }} value='meta-browse-happy'>{{ __('Meta - Browse Happy') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-get-involved') ? 'selected' : '' }} value='meta-get-involved'>{{ __('Meta - Get Involved') }}</option>
-                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-pattern-directory') ? 'selected' : '' }} value='meta-pattern-directory'>{{ __('Meta - Pattern Directory') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-learn-wordpress') ? 'selected' : '' }} value='meta-learn-wordpress'>{{ __('Meta - Learn WordPress') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-openverse') ? 'selected' : '' }} value='meta-openverse'>{{ __('Meta - Openverse') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'android') ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
@@ -241,11 +241,11 @@
                                 {!! __('This tool tries to make it easier for translators to <strong>reuse translations from one local variation of a language to another</strong> and also <strong>between languages</strong>.') !!}
                                 <br><br>
                                 {!! __('It is designed (and was initially developed for this purpose) for those cases of <strong>bilingual people</strong> who want to take advantage of the fact that one of the two languages they master has a much higher percentage of translations.') !!}
-                                {!!  __('For example, in the case of Galicia (Spain), its inhabitants are bilingual in Galician and Spanish, so that the Galician translation community can take advantage of the translation of the Spanish team (from Spain), using files pre-translated into Spanish of the translation chains that are missing in Galician, so the translation effort is much less, since in this case the translation is from Spanish to Galician and not from English to Galician. Similar cases are those of Catalan, Basque, Aragonese, Asturian, Balearic,...') !!}
+                                {!!  __('For example, in the case of Galicia (Spain), its inhabitants are bilingual in Galician and Spanish, so that the Galician translation community can take advantage of the translation of the Spanish team (from Spain), using files pre-translated into Spanish of the translation chains that are missing in Galician, so the translation effort is much less, since in this case the translation is from Spanish to Galician and not from English to Galician. Similar cases are those of Catalan, Basque, Aragonese, Asturian, Balearic ...') !!}
 
                                 <br><br>
-                                {!! __('It is also designed for those cases in which there is a <strong>variation in the language</strong>, such as the case of Spanish, which has variations such as Spanish from Spain, Peru, Venezuela,... in which the translations that have a lower percentage can use the work of the group that has done more work, as is the case of Spanish from Spain.') !!}
-                                {!! __('This is also valid for other languages such as English, which has variations in Canada, UK, Australia,...') !!}
+                                {!! __('It is also designed for those cases in which there is a <strong>variation in the language</strong>, such as the case of Spanish, which has variations such as Spanish from Spain, Peru, Venezuela ... in which the translations that have a lower percentage can use the work of the group that has done more work, as is the case of Spanish from Spain.') !!}
+                                {!! __('This is also valid for other languages such as English, which has variations in Canada, UK, Australia ...') !!}
                                 <br>
                                 <br>
                                 <h3>{!! __('Inputs') !!}</h3>
@@ -261,14 +261,14 @@
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordCamp.org.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordPress.org.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordPress Plugin Directory.') !!}<br>
-                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Forums.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - WordPress Theme Directory.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Pattern Directory.') !!}<br>
+                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Forums.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - o2.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Rosetta.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Breathe.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Browser Happy.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Get involved.') !!}<br>
-                                &nbsp;&nbsp;&nbsp; - {!! __('Meta - Pattern Directory.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('Meta - Learn WordPress.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The Android app.') !!}<br>
                                 &nbsp;&nbsp;&nbsp; - {!! __('The iOS app.') !!}<br>
@@ -283,7 +283,7 @@
                                 <br>
                                 <h3>{!! __('Output') !!}</h3>
                                 <br>
-                                {!! __('The resulting file is a "po" file of the missing strings to be translated into the target language with the pre-translated strings in the source language.') !!}<br><br>
+                                {!! __('The resulting file is a ".po" file of the missing strings to be translated into the target language with the pre-translated strings in the source language.') !!}<br><br>
                                 1) {!! __('This process may take a few seconds. Be patient.') !!}<br>
                                 2) {!! __('Do not click "Download .po" more than once.') !!}<br>
                             </label>
