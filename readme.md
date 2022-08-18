@@ -12,17 +12,18 @@ advantage of the translation of the Spanish team (from Spain), using files
 pre-translated into Spanish of the translation strings that are missing in 
 Galician, so the translation effort is much less, since in this case the 
 translation is from Spanish to Galician and not from English to Galician. 
-Similar cases are those of Catalan, Basque, Aragonese, Asturian, Balearic,...
+Similar cases are those of Catalan, Basque, Aragonese, Asturian, Balearic ...
 
 It is also designed for those cases in which there is a **variation in the 
 language**, such as the case of Spanish, which has variations such as Spanish 
-from Spain, Peru, Venezuela,... in which the translations that have a lower 
+from: Spain, Peru, Venezuela ... in which the translations that have a lower 
 percentage can use the work of the group that has done more work, as is the 
 case of Spanish from Spain. This is also valid for other languages such as 
-English, which has variations in Canada, UK, Australia,...
+English, which has variations in Canada, UK, Australia ...
 
-The resulting file is a "po" file of the missing strings to be translated into 
-the target language with the pre-translated strings in the source languageo2
+The resulting file is a ".po" file of the missing strings to be translated into 
+the target language with the pre-translated strings in the source language.
+
 ### Inputs
 
 - **Translation type**. You can select to translate:
@@ -36,18 +37,20 @@ the target language with the pre-translated strings in the source languageo2
     - Meta - WordCamp.org.
     - Meta - WordPress.org.
     - Meta - WordPress Plugin Directory.
-    - Meta - Forums.
     - Meta - WordPress Theme Directory.
+    - Meta - Pattern Directory.
+    - Meta - Forums.
     - Meta - o2.
     - Meta - Rosetta.
     - Meta - Breathe.
     - Meta - Browser Happy.
     - Meta - Get involved.
-    - Meta - Pattern Directory.
     - Meta - Learn WordPress.
     - Meta - Openverse.
     - The Android app.
     - The iOS app.
+
+
 - **Translation from**. You can select a plugin to translate from 
 _Development (trunk)_ or from _Stable (latest release)_.
 - **Slug**. The slug of the plugin or theme. You can find it in the URL. For 
