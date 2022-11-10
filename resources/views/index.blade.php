@@ -37,6 +37,7 @@
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'meta-openverse') ? 'selected' : '' }} value='meta-openverse'>{{ __('Meta - Openverse') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'android') ? 'selected' : '' }} value='android'>{{ __('Android app') }}</option>
                                         <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'ios') ? 'selected' : '' }} value='ios'>{{ __('iOS app') }}</option>
+                                        <option {{ ((session()->get('translationRequest')['translationType'] ?? '')  === 'wpcom') ? 'selected' : '' }} value='wpcom'>{{ __('WordPress.com') }}</option>
                                     </select>
 
                                     @if ($errors->has('translationType'))

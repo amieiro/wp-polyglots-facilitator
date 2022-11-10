@@ -193,6 +193,9 @@ class Translator
                 case 'ios':
                     $this->urlBase = 'https://translate.wordpress.org/projects/apps/ios/dev/';
                     break;
+                case 'wpcom':
+                    $this->urlBase = 'https://translate.wordpress.com/projects/wpcom/';
+                    break;
                 default:
             }
             if (!(($this->translationType === 'plugin') || ($this->translationType === 'theme'))) {
@@ -200,7 +203,6 @@ class Translator
                 $this->sourceLanguageFile = $this->translationType . '-' . $this->originalLanguage . '-' . $this->originalLanguageVariation . '.po';
                 $this->urlDestinationLanguageFile = $this->urlBase . $this->destinationLanguage . '/' . $this->destinationLanguageVariation . '/export-translations/?filters%5Bstatus%5D=untranslated';
                 $this->destinationLanguageFile = $this->translationType . '-' . $this->destinationLanguage . '-' . $this->destinationLanguageVariation . '.po';
-
             }
             $this->fullSourceLanguagePath = storage_path('app/' . $this->sourceLanguageFile);
             $this->sourceLanguagePath = 'app/' . $this->sourceLanguageFile;
@@ -210,15 +212,16 @@ class Translator
             $fileHeadersSourceLanguageFile = @get_headers($this->urlSourceLanguageFile);
             $fileHeadersDestinationLanguageFile = @get_headers($this->urlDestinationLanguageFile);
             if ((strpos($fileHeadersSourceLanguageFile[0], '200', 0) !== false) && (strpos($fileHeadersDestinationLanguageFile[0], '200', 0) !== false)) {
-                file_put_contents(storage_path($this->sourceLanguagePath), fopen($this->urlSourceLanguageFile, 'r'));
+	            ini_set('user_agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.4951.54 Safari/537.36');
+	            file_put_contents(storage_path($this->sourceLanguagePath), fopen($this->urlSourceLanguageFile, 'r'));
                 file_put_contents(storage_path($this->destinationLanguagePath), fopen($this->urlDestinationLanguageFile, 'r'));
-            } else {
-                $this->error = 'File not found';
+            } elseif ( ! str_contains( $fileHeadersSourceLanguageFile[0], '200' ) ) {
+                $this->error = 'Original file not found. URL: ' . $this->urlSourceLanguageFile . json_encode(get_headers($this->urlSourceLanguageFile));
                 throw new Exception($this->error);
             }
         } catch (Exception $exception) {
             if ($this->error === null) {
-                $this->error = 'Error in the downloadPoFiles method: ' . $exception->getMessage();
+                $this->error = 'Error in the downloadPoFiles method: ' . $exception->getMessage() ;
             }
             throw new Exception($this->error);
         }
@@ -304,11 +307,12 @@ class Translator
     protected
     function searchAndReplaceStrings(Collection $originalCollection, Collection $destinationCollection)
     {
+	    $counter=0;
+		$originalObject=null;
         try {
             $destinationCollection = $destinationCollection->sortBy(function ($value, $key) {
                 return strlen($value->msgid);
             }, SORT_REGULAR, false);
-            $counter=0;
             foreach ($destinationCollection as $key => $destinationObject) {
                 $originalObject = $originalCollection->filter(function ($item) use ($destinationObject) {
                     return $item->msgid === $destinationObject->msgid;
@@ -328,7 +332,8 @@ class Translator
 
            return $destinationCollection->take($this->numberOfStrings);
         } catch (Exception $exception) {
-            $this->error = 'Error in the searchAndReplaceStrings method: ' . $exception->getMessage();
+            $this->error = 'Error in the searchAndReplaceStrings method: ' . $exception->getMessage() . '<br>';
+			$this->error .= 'Original object: ' . json_encode($originalObject) . '<br>';
             throw new Exception($this->error);
         }
     }
