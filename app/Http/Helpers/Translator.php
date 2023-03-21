@@ -160,6 +160,9 @@ class Translator
                 case 'meta-forums':
                     $this->urlBase = 'https://translate.wordpress.org/projects/meta/forums/';
                     break;
+                case 'meta-wp20':
+                    $this->urlBase = 'https://translate.wordpress.org/projects/meta/wp20/';
+                    break;
                 case 'meta-wordpress-theme-directory':
                     $this->urlBase = 'https://translate.wordpress.org/projects/meta/themes/';
                     break;
