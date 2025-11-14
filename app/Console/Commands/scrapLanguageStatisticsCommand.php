@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Locale;
@@ -12,35 +14,18 @@ class scrapLanguageStatisticsCommand extends Command
 {
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'wp-translation:scrap-language-statistics';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Scrap Language Statistics';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return mixed
-     * @throws \Exception
      */
-    public function handle()
+    public function handle(): void
     {
         $this->countPercentageAndContributors();
         $this->countCompleteElements('plugins');
@@ -50,9 +35,6 @@ class scrapLanguageStatisticsCommand extends Command
 
     /**
      * Count and store the themes or plugins completed in each locale
-     *
-     * @param string $locale_code
-     * @param string $type
      */
     protected function countCompleteElements(string $type): void
     {
@@ -110,7 +92,6 @@ class scrapLanguageStatisticsCommand extends Command
     /**
      * Count and store the WordPress core translated percentage and the number
      * of contributors in each locale
-     *
      */
     protected function countPercentageAndContributors(): void
     {
@@ -144,9 +125,7 @@ class scrapLanguageStatisticsCommand extends Command
 
     /**
      * Sleep the code execution a random time
-     *
      */
-
     protected function sleep(): void
     {
         try {

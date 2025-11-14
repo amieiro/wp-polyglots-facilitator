@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 
 class Locale extends Model
@@ -13,8 +16,13 @@ class Locale extends Model
         'wordpress_locale',
     ];
 
-    public function getFullNameAttribute()
+    /**
+     * Get the full name attribute.
+     */
+    protected function fullName(): Attribute
     {
-        return $this->locale_name . ' (' . $this->native_name . ')';
+        return Attribute::make(
+            get: fn () => "{$this->locale_name} ({$this->native_name})"
+        );
     }
 }

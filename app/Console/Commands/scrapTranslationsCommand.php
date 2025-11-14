@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Http\Helpers\TranslationBlock;
@@ -33,8 +35,6 @@ class scrapTranslationsCommand extends Command
 
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'wp-translation:scrap-translations
             {--type=themes : The download type: currently, only themes}
@@ -47,36 +47,22 @@ class scrapTranslationsCommand extends Command
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Scrap the translations for some WordPress items: plugins, themes,...Currently, only works with themes';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
 
         $this->type = $this->option('type');
         $this->locale = $this->option('locale');
-        $this->minWait = $this->option('minWait');
-        $this->maxWait = $this->option('maxWait');
-        $this->downloadAll = $this->option('downloadAll');
-        $this->deletePo = $this->option('deletePo');
-        $this->showStats = $this->option('showStats');
+        $this->minWait = (int) $this->option('minWait');
+        $this->maxWait = (int) $this->option('maxWait');
+        $this->downloadAll = (bool) $this->option('downloadAll');
+        $this->deletePo = (bool) $this->option('deletePo');
+        $this->showStats = (bool) $this->option('showStats');
 
         if ($this->showStats === true) {
             $this->printStats();
@@ -100,29 +86,23 @@ class scrapTranslationsCommand extends Command
                 unlink($filePath);
             }
             if (($this->minWait > 0) && ($this->maxWait > 0)) {
-                sleep(rand($this->argument('minWait'), $this->argument('maxWait')));
+                sleep(rand($this->minWait, $this->maxWait));
             }
         }
     }
 
     /**
      * Get the theme list from the public API.
-     *
-     * @return array
      */
     private function get_themes_list(): array
     {
         $client = new Client();
         $request = $client->get($this->urlBaseThemes);
-        return json_decode($request->getBody(), true)['sub_projects'];
+        return json_decode($request->getBody()->getContents(), true)['sub_projects'];
     }
 
     /**
      * Download the .po file for a theme
-     *
-     * @param string $slug
-     * @param string $language
-     * @return string
      */
     private function download_theme_translation(string $slug, string $language): string
     {
@@ -137,10 +117,6 @@ class scrapTranslationsCommand extends Command
 
     /**
      * Check if the $theme is downloaded and stored in the database for the $locale
-     *
-     * @param array $theme
-     * @param string $locale
-     * @return bool
      */
     protected function is_theme_downloaded(array $theme, string $locale): bool
     {
@@ -153,11 +129,8 @@ class scrapTranslationsCommand extends Command
 
     /**
      * Create a collection of TranslationBlock for the downloaded file
-     *
-     * @param $archivo
-     * @return Collection|null
      */
-    protected function createCollectionFromFile($archivo): ?Collection
+    protected function createCollectionFromFile(string $archivo): ?Collection
     {
         try {
             $fileContent = File::get($archivo);
@@ -172,37 +145,37 @@ class scrapTranslationsCommand extends Command
                     $myTranslationBlock = new TranslationBlock();
                 }
                 // Comment
-                if (strpos($row, '#') === 0) {
+                if (str_starts_with($row, '#')) {
                     $myTranslationBlock->comment .= $myTranslationBlock->comment === null ? $row : PHP_EOL . $row;
                     continue;
                 }
                 // msgctxt: Message context
-                if (strpos($row, 'msgctxt') === 0) {
+                if (str_starts_with($row, 'msgctxt')) {
                     $myTranslationBlock->msgctxt = trim(substr($row, 8), '"') === '' ? null : $this->stripQuotes(substr($row, 8));
                     continue;
                 }
                 // msgid
-                if (strpos($row, 'msgid ') === 0) {
+                if (str_starts_with($row, 'msgid ')) {
                     $myTranslationBlock->msgid = $this->stripQuotes(substr($row, 6));
                     continue;
                 }
                 // msgid_plural
-                if (strpos($row, 'msgid_plural') === 0) {
+                if (str_starts_with($row, 'msgid_plural')) {
                     $myTranslationBlock->msgid_plural = $this->stripQuotes(substr($row, 13));
                     continue;
                 }
                 // msgstr
-                if (strpos($row, 'msgstr ') === 0) {
+                if (str_starts_with($row, 'msgstr ')) {
                     $myTranslationBlock->msgstr = trim(substr($row, 7), '"') === '' ? null : $this->stripQuotes(substr($row, 7));
                     continue;
                 }
                 // msgstr[0]
-                if (strpos($row, 'msgstr[0]') === 0) {
+                if (str_starts_with($row, 'msgstr[0]')) {
                     $myTranslationBlock->msgstr0 = trim(substr($row, 10), '"') === '' ? null : $this->stripQuotes(substr($row, 10));
                     continue;
                 }
                 // msgstr[1]
-                if (strpos($row, 'msgstr[1]') === 0) {
+                if (str_starts_with($row, 'msgstr[1]')) {
                     $myTranslationBlock->msgstr1 = trim(substr($row, 10), '"') === '' ? null : $this->stripQuotes(substr($row, 10));
                     continue;
                 }
@@ -218,14 +191,8 @@ class scrapTranslationsCommand extends Command
 
     /**
      * Stores the TranslationBlock collection in the database
-     *
-     * @param string $project_type
-     * @param string $project_slug
-     * @param string $locale
-     * @param Collection $collection
-     * @return void
      */
-    protected function persistCollection(string $project_type, string $project_slug, string $locale, Collection $collection)
+    protected function persistCollection(string $project_type, string $project_slug, string $locale, Collection $collection): void
     {
         foreach ($collection as $item) {
             try {
@@ -255,16 +222,14 @@ class scrapTranslationsCommand extends Command
     /**
      * Remove the first and last quote from a quoted string of text
      * https://stackoverflow.com/questions/9734758/remove-quotes-from-start-and-end-of-string-in-php
-     *
-     * @param mixed $text
-     * @return mixed $text
      */
     protected function stripQuotes(mixed $text): mixed
     {
         return preg_replace('/^(\'(.*)\'|"(.*)")$/', '$2$3', $text);
     }
 
-    protected function printStats() {
+    protected function printStats(): void
+    {
         $differentStringsNumber = DB::select('select COUNT(distinct(msgid)) as number from translations')[0]->number;
         echo 'Number of different strings: ' . $differentStringsNumber . PHP_EOL;
         $totalStringNumber = DB::select('select COUNT(msgid) as number from translations')[0]->number;

@@ -1,26 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use App\Http\Helpers\Translator;
 use App\Http\Requests\DownloadAndReplaceTranslation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use Illuminate\Http\RedirectResponse;
 
 class TranslationController extends Controller
 {
-    protected $translationType;
-    protected $translationFrom;
-    protected $slug;
-    protected $readme = null;
-    protected $originalLanguage;
-    protected $originalLanguageVariation;
-    protected $destinationLanguage;
-    protected $destinationLanguageVariation;
-    protected $numberOfStrings;
-    protected $translateStrings = null;
+    protected string $translationType;
+    protected string $translationFrom;
+    protected ?string $slug = null;
+    protected ?string $readme = null;
+    protected string $originalLanguage;
+    protected string $originalLanguageVariation;
+    protected string $destinationLanguage;
+    protected string $destinationLanguageVariation;
+    protected int $numberOfStrings;
+    protected ?string $translateStrings = null;
 
-    protected function downloadAndReplace(DownloadAndReplaceTranslation $request)
+    protected function downloadAndReplace(DownloadAndReplaceTranslation $request): BinaryFileResponse|RedirectResponse
     {
         $request->session()->put('translationRequest', $request->except('_token', 'download-po'));
         // Request validation
@@ -45,7 +49,7 @@ class TranslationController extends Controller
             $this->originalLanguageVariation = $request->originalLanguageVariation;
             $this->destinationLanguage = $request->destinationLanguage;
             $this->destinationLanguageVariation = $request->destinationLanguageVariation;
-            $this->numberOfStrings = $request->numberOfStrings;
+            $this->numberOfStrings = (int) $request->numberOfStrings;
             $this->translateStrings = $request->translateStrings;
             $translator = new Translator(
 				$this->translationType,
@@ -67,6 +71,7 @@ class TranslationController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         } catch (\Exception $exception) {
             echo $exception;
+            return redirect()->back();
         }
     }
 }
