@@ -163,6 +163,7 @@ For local development with PHP 8.4:
 php artisan serve
 
 The application will be available at `http://localhost:8000`.
+```
 
 ## Testing
 
@@ -259,5 +260,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## Support
 
 For issues, questions, or contributions, please use the [GitHub issue tracker](https://github.com/amieiro/wp-polyglots-facilitator/issues).
-
-````
