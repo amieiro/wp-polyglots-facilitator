@@ -11,18 +11,12 @@
 
     <!-- Scripts -->
 {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
-{{-- todo: add from npm --}}
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="{{ asset('assets/js/jquery-3.2.1.min.js') }}"></script>
+    <script src="{{ asset('assets/js/popper-1.12.9.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.min.js') }}" defer></script>
-{{--    <script src="{{ asset('assets/vendor/bootstrap/') }}" defer></script>--}}
-
-    <!-- Fonts -->
-{{--    <link rel="dns-prefetch" href="/icons/fonts.gstatic.com">--}}
-{{--    <link href="https:/icons/fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">--}}
 
     <!-- Styles -->
-    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="{{ asset('assets/css/font-awesome-4.7.0.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
 
     <!-- Icons -->
