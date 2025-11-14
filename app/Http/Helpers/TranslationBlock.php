@@ -1,38 +1,16 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Http\Helpers;
 
-
 class TranslationBlock
 {
-    protected $comment;
-    protected $msgctxt;
-    protected $msgid;
-    protected $msgid_plural;
-    protected $msgstr;
-    protected $msgstr0;
-    protected $msgstr1;
-
-    public function __get($property){
-        if(property_exists($this, $property)) {
-            return $this->$property;
-        }
-    }
-
-    public function __set($property, $value){
-        if(property_exists($this, $property)) {
-            $this->$property = $value;
-        }
-    }
-
-    /**
-     * Create a new instance
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-
-    }
+    public ?string $comment = null;
+    public ?string $msgctxt = null;
+    public ?string $msgid = null;
+    public ?string $msgid_plural = null;
+    public ?string $msgstr = null;
+    public ?string $msgstr0 = null;
+    public ?string $msgstr1 = null;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Console\Commands;
 
 use App\Models\Locale;
@@ -9,38 +11,22 @@ use Illuminate\Support\Facades\Log;
 
 class scrapLanguagesCommand extends Command
 {
-    protected $urlBase = 'https://translate.wordpress.org/';
+    protected string $urlBase = 'https://translate.wordpress.org/';
 
     /**
      * The name and signature of the console command.
-     *
-     * @var string
      */
     protected $signature = 'wp-translation:scrap-languages';
 
     /**
      * The console command description.
-     *
-     * @var string
      */
     protected $description = 'Scrap and store in the database the languages from https://translate.wordpress.org';
 
     /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * Execute the console command.
-     *
-     * @return mixed
      */
-    public function handle()
+    public function handle(): void
     {
         try {
             // Check if the "locales" table is empty

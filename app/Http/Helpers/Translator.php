@@ -1,10 +1,11 @@
 <?php
 
+declare(strict_types=1);
 
 namespace App\Http\Helpers;
 
 // todo: put in an .env variable
-ini_set('max_execution_time', 180);
+ini_set('max_execution_time', '180');
 
 use App\Http\Helpers\TranslationBlock;
 use App\Models\WordTranslation;
@@ -219,7 +220,7 @@ class Translator
 	            file_put_contents(storage_path($this->sourceLanguagePath), fopen($this->urlSourceLanguageFile, 'r'));
                 file_put_contents(storage_path($this->destinationLanguagePath), fopen($this->urlDestinationLanguageFile, 'r'));
             } elseif ( ! str_contains( $fileHeadersSourceLanguageFile[0], '200' ) ) {
-                $this->error = 'Original file not found. URL: ' . $this->urlSourceLanguageFile . json_encode(get_headers($this->urlSourceLanguageFile));
+                $this->error = 'Original file not found. URL: ' . $this->urlSourceLanguageFile . '\n\n' . json_encode(get_headers($this->urlSourceLanguageFile));
                 throw new Exception($this->error);
             }
         } catch (Exception $exception) {
@@ -253,37 +254,37 @@ class Translator
                     $myTranslationBlock = new TranslationBlock();
                 }
                 // Comment
-                if (strpos($row, '#') === 0) {
+                if (str_starts_with($row, '#')) {
                     $myTranslationBlock->comment .= $myTranslationBlock->comment === null ? $row : PHP_EOL . $row;
                     continue;
                 }
                 // msgctxt: Message context
-                if (strpos($row, 'msgctxt') === 0) {
+                if (str_starts_with($row, 'msgctxt')) {
                     $myTranslationBlock->msgctxt = trim(substr($row, 8), '"') === '' ? null : $this->stripQuotes(substr($row, 8));
                     continue;
                 }
                 // msgid
-                if (strpos($row, 'msgid ') === 0) {
+                if (str_starts_with($row, 'msgid ')) {
                     $myTranslationBlock->msgid = $this->stripQuotes(substr($row, 6));
                     continue;
                 }
                 // msgid_plural
-                if (strpos($row, 'msgid_plural') === 0) {
+                if (str_starts_with($row, 'msgid_plural')) {
                     $myTranslationBlock->msgid_plural = $this->stripQuotes(substr($row, 13));
                     continue;
                 }
                 // msgstr
-                if (strpos($row, 'msgstr ') === 0) {
+                if (str_starts_with($row, 'msgstr ')) {
                     $myTranslationBlock->msgstr = trim(substr($row, 7), '"') === '' ? null : $this->stripQuotes(substr($row, 7));
                     continue;
                 }
                 // msgstr[0]
-                if (strpos($row, 'msgstr[0]') === 0) {
+                if (str_starts_with($row, 'msgstr[0]')) {
                     $myTranslationBlock->msgstr0 = trim(substr($row, 10), '"') === '' ? null : $this->stripQuotes(substr($row, 10));
                     continue;
                 }
                 // msgstr[1]
-                if (strpos($row, 'msgstr[1]') === 0) {
+                if (str_starts_with($row, 'msgstr[1]')) {
                     $myTranslationBlock->msgstr1 = trim(substr($row, 10), '"') === '' ? null : $this->stripQuotes(substr($row, 10));
                     continue;
                 }
@@ -363,25 +364,37 @@ class Translator
                 if ($translationBlock->msgstr !== null && (trim($translationBlock->msgstr) !== '')) {
                     $translationBlock->comment .= PHP_EOL . '# Original translation (msgstr) in "' . $this->originalLanguage . '" language is: "' . $translationBlock->msgstr . '"';
                     foreach ($wordTRanslations as $word) {
-                        $translationBlock->msgstr = preg_replace('/\b' . trim($word->source_word) . '\b/u', trim($word->destination_word), $translationBlock->msgstr);
-                        $translationBlock->msgstr = preg_replace('/\b' . ucfirst(trim($word->source_word)) . '\b/u', ucfirst(trim($word->destination_word)), $translationBlock->msgstr);
-                        $translationBlock->msgstr = preg_replace('/\b' . strtoupper(trim($word->source_word)) . '\b/u', strtoupper(trim($word->destination_word)), $translationBlock->msgstr);
+                        if ($word->source_word !== null && $word->destination_word !== null) {
+                            $sourceWord = trim($word->source_word);
+                            $destWord = trim($word->destination_word);
+                            $translationBlock->msgstr = preg_replace('/\b' . $sourceWord . '\b/u', $destWord, $translationBlock->msgstr);
+                            $translationBlock->msgstr = preg_replace('/\b' . ucfirst($sourceWord) . '\b/u', ucfirst($destWord), $translationBlock->msgstr);
+                            $translationBlock->msgstr = preg_replace('/\b' . strtoupper($sourceWord) . '\b/u', strtoupper($destWord), $translationBlock->msgstr);
+                        }
                     }
                 }
                 if ($translationBlock->msgstr0 !== null && (trim($translationBlock->msgstr0) !== '')) {
                     $translationBlock->comment .= PHP_EOL . '# Original translation (msgstr[0]) in "' . $this->originalLanguage . '" language is: ' . $translationBlock->msgstr0 . '"';
                     foreach ($wordTRanslations as $word) {
-                        $translationBlock->msgstr0 = preg_replace('/\b' . trim($word->source_word) . '\b/u', trim($word->destination_word), $translationBlock->msgstr0);
-                        $translationBlock->msgstr0 = preg_replace('/\b' . ucfirst(trim($word->source_word)) . '\b/u', ucfirst(trim($word->destination_word)), $translationBlock->msgstr0);
-                        $translationBlock->msgstr0 = preg_replace('/\b' . strtoupper(trim($word->source_word)) . '\b/u', strtoupper(trim($word->destination_word)), $translationBlock->msgstr0);
+                        if ($word->source_word !== null && $word->destination_word !== null) {
+                            $sourceWord = trim($word->source_word);
+                            $destWord = trim($word->destination_word);
+                            $translationBlock->msgstr0 = preg_replace('/\b' . $sourceWord . '\b/u', $destWord, $translationBlock->msgstr0);
+                            $translationBlock->msgstr0 = preg_replace('/\b' . ucfirst($sourceWord) . '\b/u', ucfirst($destWord), $translationBlock->msgstr0);
+                            $translationBlock->msgstr0 = preg_replace('/\b' . strtoupper($sourceWord) . '\b/u', strtoupper($destWord), $translationBlock->msgstr0);
+                        }
                     }
                 }
                 if ($translationBlock->msgstr1 !== null && (trim($translationBlock->msgstr1) !== '')) {
                     $translationBlock->comment .= PHP_EOL . '# Original translation (msgstr[1]) in "' . $this->originalLanguage . '" language is: ' . $translationBlock->msgstr1 . '"';
                     foreach ($wordTRanslations as $word) {
-                        $translationBlock->msgstr1 = preg_replace('/\b' . trim($word->source_word) . '\b/u', trim($word->destination_word), $translationBlock->msgstr1);
-                        $translationBlock->msgstr1 = preg_replace('/\b' . ucfirst(trim($word->source_word)) . '\b/u', ucfirst(trim($word->destination_word)), $translationBlock->msgstr1);
-                        $translationBlock->msgstr1 = preg_replace('/\b' . strtoupper(trim($word->source_word)) . '\b/u', strtoupper(trim($word->destination_word)), $translationBlock->msgstr1);
+                        if ($word->source_word !== null && $word->destination_word !== null) {
+                            $sourceWord = trim($word->source_word);
+                            $destWord = trim($word->destination_word);
+                            $translationBlock->msgstr1 = preg_replace('/\b' . $sourceWord . '\b/u', $destWord, $translationBlock->msgstr1);
+                            $translationBlock->msgstr1 = preg_replace('/\b' . ucfirst($sourceWord) . '\b/u', ucfirst($destWord), $translationBlock->msgstr1);
+                            $translationBlock->msgstr1 = preg_replace('/\b' . strtoupper($sourceWord) . '\b/u', strtoupper($destWord), $translationBlock->msgstr1);
+                        }
                     }
                 }
             }
